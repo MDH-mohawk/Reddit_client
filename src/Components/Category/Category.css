@@ -1,0 +1,38 @@
+.category_main{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 50px;
+}
+
+.category_main:hover{
+background-color: orange;
+}
+
+.Category_img{
+    height:75px;
+    width: 75px;
+    border-radius: 50%;
+}
+
+#category_text{
+    font-size: 20px;
+    margin: 20px;
+}
+
+@media screen and (max-width:500px){
+    .Category_img{
+        height: 50px;
+        width: 50px;
+    }
+    .category_main p{
+        margin: 15px;
+        font-size:15px;
+        font-weight: 700;
+    }
+    .category_main:active{
+        background-color: orange;
+        }
+} 

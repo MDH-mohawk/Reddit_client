@@ -1,0 +1,70 @@
+img{
+    float: left;
+
+}
+
+.SearchHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 95%;
+    margin: auto;
+    margin-top: 20px;
+    height: 50px;
+    background-color: #FF4500;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.search{
+    margin-right: 0px;
+    display: flex;
+    align-items: center;
+}
+
+.search svg path:hover{
+    fill: black;
+}
+
+.search svg path{
+    stroke: white;
+    stroke-width: 5px;
+    stroke-linejoin: round;
+}
+
+.search svg{
+    padding: 10px;
+}
+
+input{
+    border-radius: 20px;
+    border: none;
+    font-size: 20px;
+}
+
+@media screen and (max-width:500px){
+    img{
+        height: 70px;
+        width: auto;
+    }
+
+    .SearchHeader{
+        padding: 10px;
+        margin: auto;
+        margin-top: 5px;
+        width:90%;
+        position:fixed;
+        top: 0px;
+        left:50%;
+        transform: translate(-50%);
+        z-index: 2;
+    }
+
+    input{
+        font-size: 15px;
+    }
+    
+    .search svg path{
+        stroke-width: 3px;
+    }
+}

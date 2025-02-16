@@ -24,6 +24,24 @@
   color: white;
 }
 
+.main_content{
+  display: flex;
+  height: max-content;
+  margin: auto;
+  margin-top:20px;
+  width: 90%;
+  justify-content: space-between;
+}
+
+.posts{
+  flex: 2;
+  width: 100%;
+}
+
+.categories{
+  flex: 1;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -34,5 +52,18 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width:500px) {
+  .main_content{
+    margin-top: 100px;
+    width: 90%;
+    height: auto;
+  }
+
+  .posts{
+    flex: none;
+    width: 80%;
   }
 }

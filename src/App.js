@@ -6,7 +6,8 @@ import { useState } from 'react';
 
 function App() {
 
-  const [cat,setCat] = useState("")
+  const [cat,setCat] = useState()
+  
 
   const image_arr = [
     {
@@ -28,14 +29,22 @@ function App() {
       category:"Apps"
     }
   ]
-  
-  const filtered = image_arr.filter((i) => i.category === `${cat}`);
+
+  let filtered = [];
+
   console.log(filtered)
 
+  filtered = image_arr.filter((i) => i.category === `${cat}`);
+
+  if(filtered.length === 0){
+    filtered = image_arr
+  }
+
   function catClick(e){
-    setCat(e.currentTarget.id)
+    setCat(e.currentTarget.id);
     
   }
+
   
   return (
     <div className="App">    

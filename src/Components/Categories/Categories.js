@@ -8,7 +8,7 @@ function Categories({arr,catClick}){
     const [pos,setPos] = useState(-95)
 
     function onClick() {
-        setPos((prevPos) => (prevPos === -95? 0 : -95))
+        return setPos((prevPos) => (prevPos === -95? 0 : -95))
     }
     
 
@@ -23,10 +23,10 @@ function Categories({arr,catClick}){
         <div className="categories_overview">
             {categories}
         </div>
-        <div className="categories_overview_mobile" style={{
+        <div className="categories_overview_mobile" data-testid="sidebar" style={{
                 right:`${pos}px`
         }}>
-            <IoIosArrowBack className="collapse_arrow" onClick={onClick}/>
+            <IoIosArrowBack className="collapse_arrow" onClick={onClick} data-testid="sidebar_arrow"/>
             {categories}
 
         </div>

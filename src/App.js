@@ -12,7 +12,7 @@ function App() {
   const [search,setSearch] = useState('')
 
   //used to filter information
-  let filtered = [];
+  let [filtered,setFiltered] = useState([])
   
   const image_arr = [
     {
@@ -46,12 +46,18 @@ function App() {
       filtered = image_arr
   }
 
-  filtered = image_arr.filter((i) => i.category === `${cat}` || i.text.includes( `${search}`));
+  useEffect(() =>{
+    let filtered_items = image_arr.filter((i) => i.category === `${cat}`);
+    setFiltered(filtered_items);
+  },[cat]);
+
+  ///filtered = image_arr.filter((i) => i.category === `${cat}` || i.text.includes( `${search}`));
 
   //Search filtering by typing text//
 
   useEffect(() =>{
-    console.log(filtered)
+    let filtered_items = image_arr.filter((i) =>i.text.toLowerCase().includes(`${search}`));
+    setFiltered(filtered_items);
   },[search]);
   
   function onValueChanged(e){

@@ -9,8 +9,8 @@ import { BsChatRightTextFill } from "react-icons/bs";
 import { TiArrowUpThick } from "react-icons/ti";
 import { TiArrowDownThick } from "react-icons/ti";
 
-
 function RedditPost({img_src,description_text}){
+
 
     const[like,setLike] = useState("");
     const [dislike,setDislike] = useState("")
@@ -29,7 +29,7 @@ function RedditPost({img_src,description_text}){
     }
 
     function Toggle_dislike(e){
-        if(like == ""){
+        if(dislike == ""){
             e.target.style.fill = "#EF3535";
             e.target.style.stroke = "none";
             setDislike("#EF3535")
@@ -42,17 +42,17 @@ function RedditPost({img_src,description_text}){
     }
 
     return (
-            <div className="post">
-                <img src={img_src}/>
-                <div className="lower_post">
-                    <div className="likes_dislikes">
-                        <TiArrowUpThick className="arrow_up" onClick={Toggle_like}/>
-                        <TiArrowDownThick className="arrow_down" onClick={Toggle_dislike}/>
+                <div className="post">
+                    <img src={img_src}/>
+                    <div className="lower_post">
+                        <div className="likes_dislikes">
+                            <TiArrowUpThick className="arrow_up" onClick={Toggle_like}/>
+                            <TiArrowDownThick className="arrow_down" onClick={Toggle_dislike}/>
+                        </div>
+                        <p>{description_text}</p>
+                        <BsChatRightTextFill className="comments" />
                     </div>
-                    <p>{description_text}</p>
-                    <BsChatRightTextFill className="comments" />
                 </div>
-            </div>
     )
 }
 

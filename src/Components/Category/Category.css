@@ -22,6 +22,12 @@ background-color: orange;
     margin: 20px;
 }
 
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
 @media screen and (max-width:500px){
     .Category_img{
         height: 50px;

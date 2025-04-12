@@ -3,6 +3,8 @@ import SearchBarHeader from './Components/Searchbar_header/SearchBarHeader';
 import RedditPost from './Components/Reddit_post/Reddit_post'
 import Categories from './Components/Categories/Categories';
 import { useState,useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { BrowserRouter,Route,Routes} from 'react-router-dom';
 
 function App() {
 
@@ -35,7 +37,6 @@ function App() {
     }
   ]
 
-
   //Filtering based on selected category//
 
   function catClick(e){
@@ -51,8 +52,6 @@ function App() {
     setFiltered(filtered_items);
   },[cat]);
 
-  ///filtered = image_arr.filter((i) => i.category === `${cat}` || i.text.includes( `${search}`));
-
   //Search filtering by typing text//
 
   useEffect(() =>{
@@ -65,19 +64,25 @@ function App() {
   }
   
   return (
-    <div className="App">    
-      <SearchBarHeader val={search} val_change={onValueChanged}/>
-      <div className='main_content'>
-        <div className='posts'>
-          {
-            filtered.map((item) => {
-              return <RedditPost key={item.key} img_src={item.src} description_text={item.text}/>
-            })
-          }
+      <BrowserRouter>
+        <div className="App">    
+          <SearchBarHeader val={search} val_change={onValueChanged}/>
+          <div className='main_content'>
+            <div className='posts'>
+          <Routes>
+          <Route path={`/:category`} element = {
+              filtered.map((item) => {
+                return <RedditPost key={item.key} img_src={item.src} description_text={item.text}/>
+              })
+            }>
+          </Route>
+          </Routes>
+
+            </div>
+            <Categories className="categories" arr={image_arr} catClick={catClick}/>
+          </div>
         </div>
-        <Categories className="categories" arr={image_arr} catClick={catClick}/>
-      </div>
-    </div>
+      </BrowserRouter>
   );
 }
 

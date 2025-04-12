@@ -3,16 +3,18 @@ import helldivers2 from '../../img/hell_divers_2.jpg';
 import  './Category.css';
 import { Link,useParams} from "react-router-dom";
 
-function Category({category,catClick}){
+function Category({cat}){
 
-    const cat = useParams("category")
+        const {category} = useParams()
+        
+        console.log(category)
 
     return (
-        <Link to={`${cat.category}`}>
-        <div className="category_main" id={category} data-testid="category" onClick={catClick}>
+        <Link to={`/${cat}`}>
+        <aside className="category_main" id={cat} data-testid="category">
             <img className="Category_img" src={helldivers2}/>
-            <p id="category_text">{category}{cat.category}</p>
-        </div>
+            <p id="category_text">{cat}</p>
+        </aside>
         </Link>
     )
 }

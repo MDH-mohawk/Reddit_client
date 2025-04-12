@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import App, { filtered } from './App';
+import Reddit_posts from './Components/Reddit_posts/Reddit_posts';
+import RedditPost from './Components/Reddit_post/Reddit_post';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, createBrowserRouter,createRoutesFromElements,Route,RouterProvider } from 'react-router-dom';
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+    <App/>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

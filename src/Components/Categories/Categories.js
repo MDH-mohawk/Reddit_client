@@ -4,7 +4,7 @@ import "./Categories.css";
 import { IoIosArrowBack } from "react-icons/io";
 
 
-function Categories({arr,catClick}){
+function Categories({arr}){
     const [pos,setPos] = useState(-95)
 
     function onClick() {
@@ -13,7 +13,7 @@ function Categories({arr,catClick}){
     
 
     const categories = (arr || [] ).map((item) =>{
-        return <Category key={item.id || item.category} category={item.category} catClick={catClick}/>
+        return <Category key={item.id || item.category} cat={item.category}/>
     })
 
     

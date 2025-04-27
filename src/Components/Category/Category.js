@@ -2,15 +2,26 @@ import React from "react";
 import helldivers2 from '../../img/hell_divers_2.jpg';
 import  './Category.css';
 import { Link,useParams} from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { changeCategory } from "../Categories/categorySlice";
+
 
 function Category({cat}){
 
         const {category} = useParams()
+
+        const dispatch = useDispatch()
         
         console.log(category)
 
+        function handlecategory(){
+            dispatch(changeCategory({
+                category:cat
+            }))
+        }
+
     return (
-        <Link to={`/${cat}`}>
+        <Link to={`/${cat}`} onClick={handlecategory}>
         <aside className="category_main" id={cat} data-testid="category">
             <img className="Category_img" src={helldivers2}/>
             <p id="category_text">{cat}</p>

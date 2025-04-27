@@ -13,7 +13,7 @@ function Categories({arr}){
     
 
     const categories = (arr || [] ).map((item) =>{
-        return <Category key={item.id || item.category} cat={item.category}/>
+        return <Category key={item} cat={item}/>
     })
 
     

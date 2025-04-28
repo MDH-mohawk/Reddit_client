@@ -1,11 +1,17 @@
-import React,{useState,useEffect} from "react";
+import React,{useState,useEffect, use} from "react";
 import ReactDOM from "react-dom/client"
 import "./SearchBarHeader.css";
 import { image_arr } from "../../App";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { AddSearchTerm } from "./SearchBarSlice";
+import { useSelector } from "react-redux";
+import { searchState } from "./SearchBarSlice";
 
 
 function SearchBarHeader({val}){
+
+    const searchTerm = useSelector(searchState)
 
     const {category} = useParams()
 
@@ -20,6 +26,8 @@ function SearchBarHeader({val}){
           filtered = image_arr
     }
 
+    const dispatch = useDispatch()
+
     //Search filtering by typing text//
     
     useEffect(() =>{
@@ -31,6 +39,14 @@ function SearchBarHeader({val}){
       
     function onValueChanged(e){
         setSearch(e.target.value);
+        dispatch(AddSearchTerm(search))
+    }
+
+    function handleSubmit(e){
+        e.preventDefault()
+        setSearch(e.target[0].value);
+        dispatch(AddSearchTerm(search))
+        console.log(searchTerm)
     }
 
 
@@ -39,7 +55,9 @@ function SearchBarHeader({val}){
             <div className="SearchHeader">
                 <img src="https://www.iconpacks.net/icons/2/free-reddit-logo-icon-2436-thumb.png" height="100px"/>
                 <div className="search">
-                    <input type="text" value={val} onChange={onValueChanged} data-testid="input_works"></input>
+                    <form onSubmit={handleSubmit}>
+                    <input type="text" value={val} data-testid="input_works"></input>
+                    </form>
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 50 50">
                         <path d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 
                         35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 

@@ -20,7 +20,7 @@ function Reddit_posts({array}){
 return (
 <div className='posts'>
     {
-    filtered.map((item) => {
+    array.map((item) => {
       return <RedditPost key={item.key} img_src={item.src} description_text={item.text}/>
     })
     }

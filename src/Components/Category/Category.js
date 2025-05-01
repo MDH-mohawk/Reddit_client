@@ -4,9 +4,13 @@ import  './Category.css';
 import { Link,useParams} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { changeCategory } from "../Categories/categorySlice";
+import { useSearchParams } from "react-router-dom";
 
 
 function Category({cat}){
+        const [searchParams,setSearchParams] = useSearchParams({category:""})
+
+        searchParams.get("category")
 
         const {category} = useParams()
 
@@ -18,15 +22,16 @@ function Category({cat}){
             dispatch(changeCategory({
                 category:cat
             }))
+            setSearchParams({category:cat})
         }
 
     return (
-        <Link to={`/${cat}`} onClick={handlecategory}>
+        <div key={cat} onClick={handlecategory}>
         <aside className="category_main" id={cat} data-testid="category">
             <img className="Category_img" src={helldivers2}/>
             <p id="category_text">{cat}</p>
         </aside>
-        </Link>
+        </div>
     )
 }
 

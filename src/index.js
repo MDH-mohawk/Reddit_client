@@ -8,12 +8,9 @@ import store from './Store';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, createBrowserRouter,createRoutesFromElements,Route,RouterProvider } from 'react-router-dom';
 
-let filtered = []
-
 
 const appRouter = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<App/>}>
-    <Route path={':category'||':searchTerm'} element={<Reddit_posts array={filtered}/>}/>
   </Route>
 ))
 

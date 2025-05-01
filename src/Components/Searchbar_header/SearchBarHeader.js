@@ -2,50 +2,28 @@ import React,{useState,useEffect, use} from "react";
 import ReactDOM from "react-dom/client"
 import "./SearchBarHeader.css";
 import { image_arr } from "../../App";
-import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { AddSearchTerm } from "./SearchBarSlice";
-import { useSelector } from "react-redux";
-import { searchState } from "./SearchBarSlice";
+import { useParams,useSearchParams} from "react-router-dom";
+import { useDispatch,useSelector } from "react-redux";
+import { AddSearchTerm,searchState } from "./SearchBarSlice";
 
 
 function SearchBarHeader({val}){
 
-    const searchTerm = useSelector(searchState)
-
-    const {category} = useParams()
-
-    //Specifically used for searching
-    const [search,setSearch] = useState('')
-
-    //used to filter information
-    let [filtered,setFiltered] = useState([])
-
-    //Filtering based on selected category//
-    if(filtered.length === 0){
-          filtered = image_arr
-    }
-
     const dispatch = useDispatch()
+
+    const searchTerm = useSelector(searchState)
+    const [searchParams,setSearchParams] = useSearchParams({q:""})
+    const q = searchParams.get("q")
 
     //Search filtering by typing text//
     
-    useEffect(() =>{
-        let filtered_items = image_arr.filter((i) => i.category === `${category}`);
-        setFiltered(filtered_items);
-        let results = filtered_items.filter((i) => i.text.toLowerCase().includes(`${search}`))
-        console.log(filtered)
-    },[search]);
-      
-    function onValueChanged(e){
-        setSearch(e.target.value);
-        dispatch(AddSearchTerm(search))
-    }
 
     function handleSubmit(e){
         e.preventDefault()
-        setSearch(e.target[0].value);
-        dispatch(AddSearchTerm(search))
+        setSearchParams(prev => 
+            {prev.set("q",e.target[0].value) 
+                return prev})
+        dispatch(AddSearchTerm(e.target[0].value))
         console.log(searchTerm)
     }
 

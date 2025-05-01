@@ -3,6 +3,7 @@ import SearchBarHeader from './Components/Searchbar_header/SearchBarHeader';
 import Categories from './Components/Categories/Categories';
 import {useParams } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
+import Reddit_posts from './Components/Reddit_posts/Reddit_posts';
 
 const categories = [
   "Phone","Screen","Apps"
@@ -36,15 +37,12 @@ const image_arr = [
 
 function App() {
 
-  const {category} = useParams();
-
-  console.log(category)
 
   return (
         <div className="App">    
           <SearchBarHeader/>
           <div className='main_content'>
-            <Outlet/>
+            <Reddit_posts />
             <Categories className="categories" arr={categories}/>
           </div>
         </div>

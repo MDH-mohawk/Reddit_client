@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App,{image_arr} from './App';
-import Reddit_posts from './Components/Reddit_posts/Reddit_posts';
+import App from './App';
+import RedditPosts from './Components/Reddit_posts/Reddit_posts';
 import { Provider } from 'react-redux';
 import store from './Store';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, createBrowserRouter,createRoutesFromElements,Route,RouterProvider } from 'react-router-dom';
+import {createBrowserRouter,createRoutesFromElements,Route,RouterProvider } from 'react-router-dom';
 
 
 const appRouter = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<App/>}>
-    <Route path=":category" element={<Reddit_posts/>}/>
+    <Route path=":category" element={<RedditPosts/>}/>
   </Route>
 ))
 

@@ -4,7 +4,7 @@ import  './Category.css';
 import { Link,useParams} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { changeCategory } from "../Categories/categorySlice";
-import { useSearchParams } from "react-router-dom";
+import { CatFilter } from "../Reddit_posts/RedditPostsSlice";
 
 
 function Category({cat}){
@@ -18,13 +18,13 @@ function Category({cat}){
             dispatch(changeCategory({
                 category:cat
             }))
-            console.log(category)
+            dispatch(CatFilter(`${cat}`))
         }
 
     return (
         <Link to={cat} key={cat} onClick={handlecategory}>
         <aside className="category_main" id={cat} data-testid="category">
-            <img className="Category_img" src={helldivers2}/>
+            <img className="Category_img" src={helldivers2} alt="Representative category"/>
             <p id="category_text">{cat}</p>
         </aside>
         </Link>

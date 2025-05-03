@@ -1,10 +1,9 @@
 import React,{useState,useEffect, use} from "react";
-import ReactDOM from "react-dom/client"
 import "./SearchBarHeader.css";
-import { image_arr } from "../../App";
-import { useParams,useSearchParams} from "react-router-dom";
+import { useSearchParams} from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
 import { AddSearchTerm,searchState } from "./SearchBarSlice";
+import { SeachFilter } from "../Reddit_posts/RedditPostsSlice";
 
 
 function SearchBarHeader({val}){
@@ -24,6 +23,7 @@ function SearchBarHeader({val}){
             {prev.set("q",e.target[0].value) 
                 return prev})
         dispatch(AddSearchTerm(e.target[0].value))
+        dispatch(SeachFilter(searchTerm))
         console.log(searchTerm)
     }
 

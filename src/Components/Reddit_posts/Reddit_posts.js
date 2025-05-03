@@ -16,7 +16,7 @@ function Reddit_posts(){
   useEffect(() =>{
     filtered_items = image_arr.filter((i) => i.category === `${category}`);
     setFiltered(filtered_items)
-    console.log(searchTerm)
+    console.log(filtered)
   },[category]);
 
 

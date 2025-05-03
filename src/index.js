@@ -11,6 +11,7 @@ import { BrowserRouter, createBrowserRouter,createRoutesFromElements,Route,Route
 
 const appRouter = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<App/>}>
+    <Route path=":category" element={<Reddit_posts/>}/>
   </Route>
 ))
 

@@ -8,10 +8,6 @@ import { useSearchParams } from "react-router-dom";
 
 
 function Category({cat}){
-        const [searchParams,setSearchParams] = useSearchParams({category:""})
-
-        searchParams.get("category")
-
         const {category} = useParams()
 
         const dispatch = useDispatch()
@@ -22,16 +18,16 @@ function Category({cat}){
             dispatch(changeCategory({
                 category:cat
             }))
-            setSearchParams({category:cat})
+            console.log(category)
         }
 
     return (
-        <div key={cat} onClick={handlecategory}>
+        <Link to={cat} key={cat} onClick={handlecategory}>
         <aside className="category_main" id={cat} data-testid="category">
             <img className="Category_img" src={helldivers2}/>
             <p id="category_text">{cat}</p>
         </aside>
-        </div>
+        </Link>
     )
 }
 

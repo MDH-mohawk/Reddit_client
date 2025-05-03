@@ -42,7 +42,7 @@ function App() {
         <div className="App">    
           <SearchBarHeader/>
           <div className='main_content'>
-            <Reddit_posts />
+            <Outlet/>
             <Categories className="categories" arr={categories}/>
           </div>
         </div>

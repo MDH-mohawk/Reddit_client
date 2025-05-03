@@ -3,6 +3,16 @@ import {catClick,cat,setCat} from './App'
 import Category from './Components/Category/Category';
 import SearchBarHeader from './Components/Searchbar_header/SearchBarHeader';
 
+jest.mock("./Components/Searchbar_header/SearchBarHeader",() => () => <div>Test</div>)
+jest.mock("./Components/Category/Category'",() => () => 
+  <div onClick={catClick}>
+<aside className="category_main" id={cat} data-testid="category">
+    <img className="Category_img" src={helldivers2} alt="Representative category"/>
+    <p id="category_text"></p>
+</aside>
+</div>)
+
+
 
 describe('Category button',() => {
 

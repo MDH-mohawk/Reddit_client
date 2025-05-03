@@ -10,8 +10,16 @@ const RedditPostReducer = createSlice({
             state = newarr
             return state;
         },
-        SeachFilter:(state,action) => {
-            return state.filter(item => item.text.includes(action.payload))
+        SearchFilter:(state,action) => {
+            let {category,text} = action.payload;
+            let newarr = image_arr.filter(item => item.category === category)
+
+            if (text === ""){
+                state = [];
+                console.log("status?")
+            }
+
+            return state = newarr.filter(item => item.text.toLocaleLowerCase().includes(text));
         }
     }
 })
@@ -19,5 +27,5 @@ const RedditPostReducer = createSlice({
 
 export default RedditPostReducer.reducer;
 export const {CatFilter} = RedditPostReducer.actions;
-export const {SeachFilter} = RedditPostReducer.actions;
+export const {SearchFilter} = RedditPostReducer.actions;
 export const RedditPostsState = (state) => state.posts;

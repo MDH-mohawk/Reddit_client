@@ -1,40 +1,56 @@
-import React,{useState,useEffect, use} from "react";
+import React, { useEffect } from "react";
 import "./SearchBarHeader.css";
-import { useSearchParams} from "react-router-dom";
+import { useSearchParams,useParams} from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
 import { AddSearchTerm,searchState } from "./SearchBarSlice";
-import { SeachFilter } from "../Reddit_posts/RedditPostsSlice";
+import { SearchFilter } from "../Reddit_posts/RedditPostsSlice";
+import { categoryState } from "../Categories/categorySlice";
 
 
-function SearchBarHeader({val}){
+function SearchBarHeader(){
+
+    const {category} = useParams()
 
     const dispatch = useDispatch()
 
+    const currentcat = useSelector(categoryState)
     const searchTerm = useSelector(searchState)
     const [searchParams,setSearchParams] = useSearchParams({q:""})
-    const q = searchParams.get("q")
+    const currentSearch = searchParams.get("q")
 
-    //Search filtering by typing text//
+
+    useEffect(() => {
+        dispatch(SearchFilter({category:category,
+            text:currentSearch
+        }))
+    },[currentSearch,category,dispatch])
     
 
     function handleSubmit(e){
-        e.preventDefault()
+        e.preventDefault();
+        dispatch(SearchFilter({category:currentcat,
+            text:searchTerm
+        }))
         setSearchParams(prev => 
-            {prev.set("q",e.target[0].value) 
+            {prev.set("q",searchTerm) 
                 return prev})
-        dispatch(AddSearchTerm(e.target[0].value))
-        dispatch(SeachFilter(searchTerm))
-        console.log(searchTerm)
+
+    }
+
+    function handleChange(e){
+
+        dispatch(AddSearchTerm(e.target.value))
+
     }
 
 
     return (
         <div>
             <div className="SearchHeader">
-                <img src="https://www.iconpacks.net/icons/2/free-reddit-logo-icon-2436-thumb.png" height="100px"/>
+                <img src="https://www.iconpacks.net/icons/2/free-reddit-logo-icon-2436-thumb.png" alt="thumbs up" height="100px"/>
                 <div className="search">
                     <form onSubmit={handleSubmit}>
-                    <input type="text" value={val} data-testid="input_works"></input>
+                    <input type="text"  placeholder="search here"  name="search-input" data-testid="input_works" onChange={handleChange}></input>
                     </form>
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 50 50">
                         <path d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 

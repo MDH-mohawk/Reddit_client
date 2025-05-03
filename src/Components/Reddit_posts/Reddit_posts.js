@@ -4,7 +4,8 @@ import {useSelector} from 'react-redux'
 import {RedditPostsState} from './RedditPostsSlice.js'
 
 function RedditPosts(){
-  const posts = useSelector(RedditPostsState)
+  const posts = useSelector(RedditPostsState);
+  
 
 return (
 <div className='posts'>

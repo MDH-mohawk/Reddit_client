@@ -1,7 +1,7 @@
 import './App.css';
 import SearchBarHeader from './Components/Searchbar_header/SearchBarHeader';
 import Categories from './Components/Categories/Categories';
-import { Outlet } from 'react-router-dom';
+import { Outlet} from 'react-router-dom';
 
 const categories = [
   "Phone","Screen","Apps"

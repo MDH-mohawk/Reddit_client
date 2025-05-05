@@ -11,16 +11,14 @@ const RedditPostModalReducer = createSlice({
     reducers:{
         setCurrentPost:(state,action) => {
             const {name,likes,img,dislikes} = action.payload
-            state = {
-                name:name,
-                likes:likes,
-                dislikes:dislikes,
-                img:img
-                }
+                state.name = name;
+                state.likes = likes;
+                state.dislikes = dislikes;
+                state.img = img;
         }
     }
 })
 
 export default RedditPostModalReducer.reducer;
 export const {setCurrentPost} = RedditPostModalReducer.actions;
-const currentPostState = (state) => state.currentpost; 
+export const currentPostState = (state) => state.currentpost; 

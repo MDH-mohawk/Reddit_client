@@ -2,9 +2,13 @@ import react,{useState} from "react";
 import { BsChatRightTextFill } from "react-icons/bs";
 import { TiArrowUpThick } from "react-icons/ti";
 import { TiArrowDownThick } from "react-icons/ti";
+import { currentPostState } from "./RedditPostModalSlice";
+import { useSelector } from "react-redux";
 
 
 function RedditPostModal({img,likes,dislikes,comments}){
+
+    const currentPosts = useSelector(currentPostState)
 
     const[like,setLike] = useState("");
     const [dislike,setDislike] = useState("")
@@ -39,18 +43,17 @@ function RedditPostModal({img,likes,dislikes,comments}){
 
 
 return (<>
-    <p>Hiii</p>
     <div className="post">
-        <img src={img}/>
+        <img src={currentPosts.img}/>
         <div className="lower_post">
             <div className="likes_dislikes">
                 <div className="likes">
                     <TiArrowUpThick className="arrow_up" onClick={Toggle_like} data-testid="Like_button" fill={like}/>
-                    <p>{likes}</p>
+                    <p>{currentPosts.likes}</p>
                 </div>
                 <div className="dislikes">
                     <TiArrowDownThick className="arrow_down" onClick={Toggle_dislike} data-testid="Dislike_button"/>
-                    <p>{dislikes}</p>       
+                    <p>{currentPosts.dislikes}</p>       
                 </div>
             </div>
             <p>Desription</p>

@@ -5,11 +5,16 @@ import { BsChatRightTextFill } from "react-icons/bs";
 import { TiArrowUpThick } from "react-icons/ti";
 import { TiArrowDownThick } from "react-icons/ti";
 import { setCurrentPost } from "../RedditPostModal/RedditPostModalSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { categoryState } from "../Categories/categorySlice";
 
 function RedditPost({img_src,description_text}){
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const currentcat = useSelector(categoryState)
 
     const[like,setLike] = useState("");
     const [dislike,setDislike] = useState("")
@@ -42,11 +47,16 @@ function RedditPost({img_src,description_text}){
     }
 
     function handlePost(e){
-        console.log(e.currentTarget);
         const current = e.currentTarget
+        console.log(current.children[1].children[1].innerHTML)
+        console.log(currentcat)
         dispatch(setCurrentPost({
-
+            name:current.children[1].children[1].innerHTML,
+            likes:"1000",
+            dislikes:"500",
+            img:current.children[0].src
         }))
+        navigate(`/${currentcat}/${current.children[1].children[1].innerHTML}`)
     }
     
 

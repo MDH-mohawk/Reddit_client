@@ -7,12 +7,14 @@ import { Provider } from 'react-redux';
 import store from './Store';
 import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter,createRoutesFromElements,Route,RouterProvider,Navigate} from 'react-router-dom';
+import RedditPostModal from './Components/RedditPostModal/RedditPostModal';
 
 
 const appRouter = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<App/>}>
     <Route path='/' element={<Navigate to="/Apps" replace/>}/>
     <Route path="/:category" element={<RedditPosts/>}/>
+    <Route path='/:category/:post' element={<RedditPostModal/>}/>
   </Route>
 ))
 

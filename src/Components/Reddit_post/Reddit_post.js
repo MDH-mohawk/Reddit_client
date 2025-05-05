@@ -4,8 +4,12 @@ import post_style from './Reddit_post.css';
 import { BsChatRightTextFill } from "react-icons/bs";
 import { TiArrowUpThick } from "react-icons/ti";
 import { TiArrowDownThick } from "react-icons/ti";
+import { setCurrentPost } from "../RedditPostModal/RedditPostModalSlice";
+import { useDispatch } from "react-redux";
 
 function RedditPost({img_src,description_text}){
+
+    const dispatch = useDispatch()
 
     const[like,setLike] = useState("");
     const [dislike,setDislike] = useState("")
@@ -37,8 +41,17 @@ function RedditPost({img_src,description_text}){
         }
     }
 
+    function handlePost(e){
+        console.log(e.currentTarget);
+        const current = e.currentTarget
+        dispatch(setCurrentPost({
+
+        }))
+    }
+    
+
     return (
-                <div className="post">
+                <div className="post" onClick={handlePost}>
                     <img src={img_src}/>
                     <div className="lower_post">
                         <div className="likes_dislikes">

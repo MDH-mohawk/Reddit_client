@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { image_arr } from "../../Mock_data";
 
+
 const RedditPostReducer = createSlice({
     name:"RedditPosts",
-    initialState:image_arr,
+    initialState:image_arr.filter(item => item.category === "Apps"),
     reducers:{
         CatFilter:(state,action) => {
             let newarr = image_arr.filter(item => item.category === action.payload)
@@ -15,8 +16,8 @@ const RedditPostReducer = createSlice({
             let newarr = image_arr.filter(item => item.category === category)
 
             if (text === ""){
-                state = [];
                 console.log("status?")
+                state = newarr;
             }
 
             return state = newarr.filter(item => item.text.toLocaleLowerCase().includes(text));

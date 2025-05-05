@@ -6,11 +6,12 @@ import RedditPosts from './Components/Reddit_posts/Reddit_posts';
 import { Provider } from 'react-redux';
 import store from './Store';
 import reportWebVitals from './reportWebVitals';
-import {createBrowserRouter,createRoutesFromElements,Route,RouterProvider } from 'react-router-dom';
+import {createBrowserRouter,createRoutesFromElements,Route,RouterProvider,Navigate} from 'react-router-dom';
 
 
 const appRouter = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<App/>}>
+    <Route path='/' element={<Navigate to="/Apps" replace/>}/>
     <Route path="/:category" element={<RedditPosts/>}/>
   </Route>
 ))

@@ -1,6 +1,6 @@
 
 import React,{useState} from "react";
-import post_style from './Reddit_post.css';
+import './Reddit_post.css';
 import { BsChatRightTextFill } from "react-icons/bs";
 import { TiArrowUpThick } from "react-icons/ti";
 import { TiArrowDownThick } from "react-icons/ti";

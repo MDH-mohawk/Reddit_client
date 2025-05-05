@@ -1,12 +1,13 @@
-import react,{useState} from "react";
+import {useState} from "react";
 import { BsChatRightTextFill } from "react-icons/bs";
 import { TiArrowUpThick } from "react-icons/ti";
 import { TiArrowDownThick } from "react-icons/ti";
 import { currentPostState } from "./RedditPostModalSlice";
 import { useSelector } from "react-redux";
+import "../RedditPostModal/RedditPostModelStyle.css"
 
 
-function RedditPostModal({img,likes,dislikes,comments}){
+function RedditPostModal({comments}){
 
     const currentPosts = useSelector(currentPostState)
 
@@ -15,7 +16,7 @@ function RedditPostModal({img,likes,dislikes,comments}){
 
     function Toggle_like(e){
         const current = e.currentTarget;
-        if(like == ""){
+        if(like === ""){
             current.style.fill = "#00C86B";
             current.style.stroke = "none";
             setLike("#00C86B")
@@ -28,7 +29,7 @@ function RedditPostModal({img,likes,dislikes,comments}){
     }
 
     function Toggle_dislike(e){
-        if(dislike == ""){
+        if(dislike === ""){
             e.target.style.fill = "#EF3535";
             e.target.style.stroke = "none";
             setDislike("#EF3535")
@@ -42,9 +43,9 @@ function RedditPostModal({img,likes,dislikes,comments}){
 
 
 
-return (<>
-    <div className="post">
-        <img src={currentPosts.img}/>
+return (
+    <div className="modal_post">
+        <img src={currentPosts.img} alt="Defines the current post"/>
         <div className="lower_post">
             <div className="likes_dislikes">
                 <div className="likes">
@@ -64,7 +65,6 @@ return (<>
         </div>
         <div className="Commentlist">{comments}</div>
     </div>   
-    </>
     )
 }
 

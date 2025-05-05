@@ -5,10 +5,13 @@
     margin: 5px;
     padding: 10px;
     border-radius: 50px;
+    transition: 0.5s;
 }
 
 .category_main:hover{
 background-color: orange;
+box-shadow: 2px 2px 4px black;
+transition: 0.5s;
 }
 
 .Category_img{

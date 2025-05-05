@@ -1,4 +1,6 @@
 
+/* animations for certain elements*/
+
 @keyframes onloadanim {
     0%{
         transform-origin: center;
@@ -13,7 +15,7 @@
 }
 
 
-.post{
+.modal_post{
     display: flex;
     flex-direction: column;
     background-color:#721F00 ;
@@ -23,10 +25,11 @@
     height: auto;
     width: 70%;
     margin: 30px;
-    animation: onloadanim 1s ease-in;
+    animation: onloadanim ease-in;
+    animation-duration: 1.5s;
 }
 
-.post img{
+.modal_post img{
     display: block;
     object-fit:contain;
     width: 100%;
@@ -54,13 +57,11 @@
     width: auto;
     height: 40px;
     margin: 0;
-    transition: 1s;
 }
 
 .arrow_up:hover{
     fill: #00C86B;
     stroke: none;
-    transition: 1s;
 }
 
 .arrow_down{
@@ -70,14 +71,12 @@
     width: auto;
     height: 40px;
     margin: 0;
-    transition: 1s;
 }
 
 .arrow_down:hover{
     fill: #EF3535;
     transition: 2s;
     stroke: none;
-    transition: 1s;
 }
 
 .comments{

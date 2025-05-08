@@ -23,7 +23,6 @@ function SearchBarHeader(){
 
     useEffect(() => {
         if( category !== "Apps"){
-            console.log("This is not apps!");
             navigate("/Apps")
         }
     },[currentcat])

@@ -1,31 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import helldivers2 from '../../img/hell_divers_2.jpg';
 import  './Category.css';
-import {Link} from "react-router-dom"; 
+import {Link,useParams} from "react-router-dom"; 
 import {useDispatch,useSelector} from "react-redux";
 import {changeCategory } from "../Categories/categorySlice";
 import {CatFilter } from "../Reddit_posts/RedditPostsSlice";
 import {categoryState } from "../Categories/categorySlice";
 import { AddSearchTerm } from "../Searchbar_header/SearchBarSlice";
+import { SlEarphones } from "react-icons/sl";
+import { current } from "@reduxjs/toolkit";
 
 
 function Category({cat}){
 
-        const dispatch = useDispatch()
-        const currentCat = useSelector(categoryState)
+        const dispatch = useDispatch();
+        const currentCat = useSelector(categoryState);
+        const {category} = useParams()
 
+        let style = "category_main";
 
-        function handlecategory(){
+        useEffect(() => {
+            const selected = document.getElementById(`${currentCat}`)
+            selected.classList.add("categoryselected")
+        },[category])
+
+        function handlecategory(e){
             dispatch(changeCategory({
                 category:cat
             }))
             dispatch(CatFilter(cat))
             dispatch(AddSearchTerm(""))
+            if(currentCat !== e.currentTarget.children[0].id){
+            const unselected = document.getElementById(`${currentCat}`)
+            unselected.classList.remove("categoryselected")
+            }
         }
+        
+        
 
     return (
         <Link to={`${cat}`} key={cat} onClick={handlecategory}>
-        <aside className="category_main" id={cat} data-testid="category">
+        <aside className={style} id={cat} data-testid="category">
             <img className="Category_img" src={helldivers2} alt="Representative category"/>
             <p id="category_text">{cat}</p>
         </aside>

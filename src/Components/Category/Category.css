@@ -9,9 +9,15 @@
 }
 
 .category_main:hover{
-background-color: orange;
-box-shadow: 2px 2px 4px black;
-transition: 0.5s;
+    background-color: orange;
+    box-shadow: 2px 2px 4px black;
+    transition: 0.5s;
+}
+
+.categoryselected{
+    background-color: orange;
+    box-shadow: 2px 2px 4px black;
+    transition: 0.5s;
 }
 
 .Category_img{

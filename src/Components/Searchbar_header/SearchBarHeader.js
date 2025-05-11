@@ -22,10 +22,10 @@ function SearchBarHeader(){
 
 
     useEffect(() => {
-        if( category !== "Apps"){
+        if( category === ""){
             navigate("/Apps")
         }
-    },[currentcat])
+    },[category])
     
 
     function handleSubmit(e){

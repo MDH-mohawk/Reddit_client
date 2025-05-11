@@ -13,8 +13,8 @@ const image_arr = [
       },
       {
         key:3,
-        src:"https://images.unsplash.com/photo-1627719172031-ab42dc849bc3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHJlZGRpdHxlbnwwfHwwfHx8MA%3D%3D",
-        text:"Ordering something",
+        src:"https://images.unsplash.com/photo-1609427955204-d0a737cb2c1a?q=80&w=2664&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D://images.https://images.unsplash.com/photo-1609427955204-d0a737cb2c1a?q=80&w=2664&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.com/photo-1627719172031-ab42dc849bc3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHJlZGRpdHxlbnwwfHwwfHx8MA%3D%3D",
+        text:"Ordering food",
         category:"Screen"
       },
       {

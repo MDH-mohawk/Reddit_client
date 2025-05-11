@@ -6,7 +6,7 @@ const RedditPostModalReducer = createSlice({
         name:"",
         likes:"",
         dislikes:"",
-        img:""
+        img:null
     },
     reducers:{
         setCurrentPost:(state,action) => {

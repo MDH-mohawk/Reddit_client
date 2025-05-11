@@ -11,7 +11,7 @@ return (
 <div className='posts'>
     {
     posts.map((item) => {
-      return <RedditPost key={item.key} img_src={item.src} description_text={item.text}/>
+      return <RedditPost key={item.key} post_id={item.key} img_src={item.src} description_text={item.text}/>
     })
     }
 </div>

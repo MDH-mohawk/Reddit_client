@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import helldivers2 from '../../img/hell_divers_2.jpg';
 import  './Category.css';
-import {Link,useParams} from "react-router-dom"; 
+import {Link,useParams} from "react-router"; 
 import {useDispatch,useSelector} from "react-redux";
 import {changeCategory } from "../Categories/categorySlice";
 import {CatFilter } from "../Reddit_posts/RedditPostsSlice";
 import {categoryState } from "../Categories/categorySlice";
 import { AddSearchTerm } from "../Searchbar_header/SearchBarSlice";
-import { SlEarphones } from "react-icons/sl";
-import { current } from "@reduxjs/toolkit";
 
 
 function Category({cat}){
@@ -19,9 +17,12 @@ function Category({cat}){
 
         let style = "category_main";
 
+        const domref = useRef()
+
         useEffect(() => {
             const selected = document.getElementById(`${currentCat}`)
             selected.classList.add("categoryselected")
+            console.log(domref.current)
         },[category])
 
         function handlecategory(e){
@@ -30,6 +31,7 @@ function Category({cat}){
             }))
             dispatch(CatFilter(cat))
             dispatch(AddSearchTerm(""))
+            console.log(cat)
             if(currentCat !== e.currentTarget.children[0].id){
             const unselected = document.getElementById(`${currentCat}`)
             unselected.classList.remove("categoryselected")
@@ -39,7 +41,7 @@ function Category({cat}){
         
 
     return (
-        <Link to={`${cat}`} key={cat} onClick={handlecategory}>
+        <Link to={`${cat}`} key={cat} onClick={handlecategory} data-testid="cat_test">
         <aside className={style} id={cat} data-testid="category">
             <img className="Category_img" src={helldivers2} alt="Representative category"/>
             <p id="category_text">{cat}</p>

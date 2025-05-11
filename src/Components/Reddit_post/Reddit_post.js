@@ -6,14 +6,16 @@ import { TiArrowUpThick } from "react-icons/ti";
 import { TiArrowDownThick } from "react-icons/ti";
 import { setCurrentPost } from "../RedditPostModal/RedditPostModalSlice";
 import { useDispatch,useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 import { categoryState } from "../Categories/categorySlice";
+import { image_arr } from "../../Mock_data";
 
-function RedditPost({img_src,description_text}){
+function RedditPost({img_src,description_text,post_id}){
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    const {post} = useParams()
     const currentcat = useSelector(categoryState)
 
     const[like,setLike] = useState("");
@@ -48,20 +50,12 @@ function RedditPost({img_src,description_text}){
 
     function handlePost(e){
         const current = e.currentTarget
-        console.log(current.children[1].children[1].innerHTML)
-        console.log(currentcat)
-        dispatch(setCurrentPost({
-            name:current.children[1].children[1].innerHTML,
-            likes:"1000",
-            dislikes:"500",
-            img:current.children[0].src
-        }))
         navigate(`/${currentcat}/${current.children[1].children[1].innerHTML}`)
     }
     
 
     return (
-                <div className="post" onClick={handlePost}>
+                <div className="post" onClick={handlePost} id={post_id}>
                     <img src={img_src}/>
                     <div className="lower_post">
                         <div className="likes_dislikes">

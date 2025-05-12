@@ -4,7 +4,7 @@ import { TiArrowUpThick } from "react-icons/ti";
 import { TiArrowDownThick } from "react-icons/ti";
 import { currentPostState } from "./RedditPostModalSlice";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import "../RedditPostModal/RedditPostModelStyle.css"
 import { image_arr } from "../../Mock_data";
 import { useDispatch } from "react-redux";

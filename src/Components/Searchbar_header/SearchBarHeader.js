@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import "./SearchBarHeader.css";
-import { useSearchParams,useParams,useNavigate} from "react-router-dom";
+import { useSearchParams,useParams,useNavigate} from "react-router";
 import { useDispatch,useSelector} from "react-redux";
 import { AddSearchTerm,searchState } from "./SearchBarSlice";
 import { SearchFilter } from "../Reddit_posts/RedditPostsSlice";
 import { categoryState } from "../Categories/categorySlice";
-import { Route } from "react-router-dom";
 
 
 function SearchBarHeader(){
@@ -20,12 +19,13 @@ function SearchBarHeader(){
     const searchTerm = useSelector(searchState)
     const [searchParams,setSearchParams] = useSearchParams({q:""})
 
+    console.log(category)
 
     useEffect(() => {
-        if( category === ""){
+        if( category === undefined || category !== "Apps"){
             navigate("/Apps")
         }
-    },[category])
+    },[])
     
 
     function handleSubmit(e){

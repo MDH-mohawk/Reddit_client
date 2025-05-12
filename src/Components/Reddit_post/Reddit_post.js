@@ -4,26 +4,24 @@ import './Reddit_post.css';
 import { BsChatRightTextFill } from "react-icons/bs";
 import { TiArrowUpThick } from "react-icons/ti";
 import { TiArrowDownThick } from "react-icons/ti";
-import { setCurrentPost } from "../RedditPostModal/RedditPostModalSlice";
-import { useDispatch,useSelector } from "react-redux";
-import { useNavigate,useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { categoryState } from "../Categories/categorySlice";
-import { image_arr } from "../../Mock_data";
 
 function RedditPost({img_src,description_text,post_id}){
 
-    const dispatch = useDispatch()
+
     const navigate = useNavigate()
 
-    const {post} = useParams()
     const currentcat = useSelector(categoryState)
+
 
     const[like,setLike] = useState("");
     const [dislike,setDislike] = useState("")
 
     function Toggle_like(e){
         const current = e.currentTarget;
-        if(like == ""){
+        if(like === ""){
             current.style.fill = "#00C86B";
             current.style.stroke = "none";
             setLike("#00C86B")

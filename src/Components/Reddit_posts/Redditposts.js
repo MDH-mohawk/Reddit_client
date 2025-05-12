@@ -1,10 +1,12 @@
 import React from "react";
-import RedditPost from "../Reddit_post/Reddit_post";
+import RedditPost from "../Reddit_post/Reddit_post.js";
 import {useSelector} from 'react-redux'
 import {RedditPostsState} from './RedditPostsSlice.js'
 
 function RedditPosts(){
   const posts = useSelector(RedditPostsState);
+
+  console.log(posts)
   
 
 return (

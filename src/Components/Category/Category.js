@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import helldivers2 from '../../img/hell_divers_2.jpg';
 import  './Category.css';
 import {Link,useParams} from "react-router"; 
@@ -17,21 +17,15 @@ function Category({cat}){
 
         let style = "category_main";
 
-        const domref = useRef()
-
         useEffect(() => {
             const selected = document.getElementById(`${currentCat}`)
             selected.classList.add("categoryselected")
-            console.log(domref.current)
         },[category])
 
         function handlecategory(e){
-            dispatch(changeCategory({
-                category:cat
-            }))
+            dispatch(changeCategory({category:cat}))
             dispatch(CatFilter(cat))
             dispatch(AddSearchTerm(""))
-            console.log(cat)
             if(currentCat !== e.currentTarget.children[0].id){
             const unselected = document.getElementById(`${currentCat}`)
             unselected.classList.remove("categoryselected")

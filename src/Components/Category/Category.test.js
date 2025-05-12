@@ -3,14 +3,17 @@ import { MemoryRouter } from "react-router";
 import "@testing-library/jest-dom";
 import { screen,fireEvent, render } from "@testing-library/react";
 import { Provider } from "react-redux";
-import store from "../../Store";
+import { configureStore } from "@reduxjs/toolkit";
 
 
-jest.spyOn(document,'getElementById').mockReturnValue({
-    classList:{
-        add:jest.fn()
+const mockStore = configureStore({
+    reducer:{
+        categories:{
+            category:"Apps"
+        }
     }
 })
+
 
 describe("Category component",() => {
     
@@ -18,9 +21,9 @@ describe("Category component",() => {
 
         //Setup
         render(
-        <Provider store={store}>
-        <MemoryRouter>
-            <Category/>
+        <Provider store={mockStore}>
+        <MemoryRouter initialEntries={["/Apps"]}>
+            <Category cat={"Apps"}/>
         </MemoryRouter>
         </Provider>
         );

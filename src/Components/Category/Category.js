@@ -7,6 +7,7 @@ import {changeCategory } from "../Categories/categorySlice";
 import {CatFilter } from "../Reddit_posts/RedditPostsSlice";
 import {categoryState } from "../Categories/categorySlice";
 import { AddSearchTerm } from "../Searchbar_header/SearchBarSlice";
+import { Redditdata } from "../Reddit_posts/RedditPostsSlice";
 
 
 function Category({cat}){
@@ -23,6 +24,7 @@ function Category({cat}){
         },[category])
 
         function handlecategory(e){
+            dispatch(Redditdata())
             dispatch(changeCategory({category:cat}))
             dispatch(CatFilter(cat))
             dispatch(AddSearchTerm(""))

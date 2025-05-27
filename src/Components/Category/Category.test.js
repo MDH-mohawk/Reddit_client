@@ -3,21 +3,28 @@ import { MemoryRouter } from "react-router";
 import "@testing-library/jest-dom";
 import { screen,fireEvent, render } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
+
+const mockReducer = createSlice({
+    name:"category",
+    initialState:{
+        category:"Apps"
+    },
+    reducers:{}
+})
 
 const mockStore = configureStore({
     reducer:{
-        categories:{
-            category:"Apps"
-        }
+        categories:mockReducer.reducer
     }
 })
 
 
+
 describe("Category component",() => {
     
-    test("Category toggle",() => {
+    test("New class is added to classlist of Category component button",() => {
 
         //Setup
         render(
@@ -27,13 +34,13 @@ describe("Category component",() => {
         </MemoryRouter>
         </Provider>
         );
-        button = screen.getByTestId("cat_test")
+        const button = screen.getByTestId("cat_test")
 
         //Exercise
         fireEvent.click(button)
 
         //Verify
-        expect(button).toBe("")
+        expect(button.children[0].classList[1]).toBe("categoryselected")
 
     })
 })

@@ -3,7 +3,6 @@ import Category from "../Category/Category";
 import "./Categories.css";
 import { IoIosArrowBack } from "react-icons/io";
 
-
 function Categories({arr}){
     const [pos,setPos] = useState(-95)
 

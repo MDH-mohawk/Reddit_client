@@ -1,11 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { image_arr } from "../../Mock_data";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { type } from "@testing-library/user-event/dist/type";
 
 export const Redditdata = createAsyncThunk("RedditPosts/getData",
     async() => {
-        const data = await fetch("https://www.reddit.com/r/UXDesign.json")
-        return data
+        const data = await fetch("https://www.reddit.com/r/UXDesign.json",{
+            type:"GET"
+        }
+        )
+        const json = await data.json()
+        console.log(json.data)
+        return json.data
     }
 )
 
@@ -40,24 +46,24 @@ const RedditPostReducer = createSlice({
             return state;
         }
     },
-    extraReducers:{
-        [Redditdata.pending]:(state) => {
+    extraReducers:(builder) => {
+        builder
+        .addCase(Redditdata.pending,(state) => {
             state.isPending = true;
             state.HasError = false;
-        },
-        [Redditdata.fulfilled]:(state,action) => {
+        })
+        .addCase(Redditdata.fulfilled, (state,action) => {
             state.isPending = false;
             state.HasError = false;
             state.real_data = action.payload;
-        },
-        [Redditdata.rejected]:(state) => {
+        })
+        .addCase(Redditdata.rejected,(state) => {
             state.isPending = false;
             state.HasError = true;
-        }
+        })
     }
 
-
-})
+});
 
 
 export default RedditPostReducer.reducer;

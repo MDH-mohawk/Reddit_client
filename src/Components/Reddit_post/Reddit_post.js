@@ -5,12 +5,12 @@ import { BsChatRightTextFill } from "react-icons/bs";
 import { TiArrowUpThick } from "react-icons/ti";
 import { TiArrowDownThick } from "react-icons/ti";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { categoryState } from "../Categories/categorySlice";
 
 function RedditPost({img_src,description_text,post_id}){
 
-
+    const {post} = useParams()
     const navigate = useNavigate()
 
     const currentcat = useSelector(categoryState)
@@ -48,7 +48,9 @@ function RedditPost({img_src,description_text,post_id}){
 
     function handlePost(e){
         const current = e.currentTarget
-        navigate(`/${currentcat}/${current.children[1].children[1].innerHTML}`)
+        console.log(typeof current.children[1].children[1].value)
+        navigate(`/${currentcat}/${current.id}`)
+        console.log(post)
     }
     
 

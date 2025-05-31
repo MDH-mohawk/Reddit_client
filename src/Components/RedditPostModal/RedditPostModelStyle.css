@@ -17,14 +17,12 @@
 
 .modal_post{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     background-color:#721F00 ;
-    padding: 20px;
     justify-content: center;
+    align-items: center;
     border-radius: 30px;
-    height: auto;
-    width: 70%;
-    margin: 30px;
+    padding: 30px;
     animation: onloadanim ease-in;
     animation-duration: 1.5s;
 }
@@ -39,15 +37,14 @@
 
 .lower_post{
     display: flex;
-    padding: 20px;
-    justify-content: space-between;
+    align-items: center;
     color: white;
 }
 
 .likes_dislikes{
     width: 100px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .arrow_up{
@@ -80,9 +77,10 @@
 }
 
 .comments{
-    height: 30px;
+    padding:5px;
     width: auto;
     fill: white;
+    align-self: center;
 }
 
 .comments:hover{

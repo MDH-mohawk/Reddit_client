@@ -21,10 +21,10 @@ function Category({cat}){
         useEffect(() => {
             const selected = document.getElementById(`${currentCat}`)
             selected.classList.add("categoryselected")
-        },[category])
+        },[currentCat])
 
         function handlecategory(e){
-            dispatch(Redditdata())
+            dispatch(Redditdata(cat))
             dispatch(changeCategory({category:cat}))
             dispatch(CatFilter(cat))
             dispatch(AddSearchTerm(""))

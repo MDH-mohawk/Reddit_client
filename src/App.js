@@ -1,14 +1,26 @@
 import './App.css';
-import SearchBarHeader from './Components/Searchbar_header/SearchBarHeader';
-import Categories from './Components/Categories/Categories';
-import { Outlet} from 'react-router';
+import {useParams,Outlet} from 'react-router';
+import { useDispatch,useSelector} from 'react-redux';
+import SearchBarHeader from './Components/Searchbar_header/SearchBarHeader'
+import Categories from './Components/Categories/Categories'
+import { useEffect } from 'react';
+import { Redditdata,RedditRealData } from './Components/Reddit_posts/RedditPostsSlice';
+
 
 const categories = [
-  "Phone","Screen","Apps"
+  "UXDesign","gamedev","GameDevelopment"
 ]
 
-
 function App() {
+
+  const data = useSelector(RedditRealData)
+  const dispatch = useDispatch();
+  const {category} = useParams();
+
+
+  useEffect(() =>{
+    dispatch(Redditdata(category))
+  },[])
 
   return (
         <div className="App">    

@@ -9,11 +9,13 @@ import "../RedditPostModal/RedditPostModelStyle.css"
 import { image_arr } from "../../Mock_data";
 import { useDispatch } from "react-redux";
 import { setCurrentPost } from "./RedditPostModalSlice";
+import { RedditRealData } from "../Reddit_posts/RedditPostsSlice";
 
 function RedditPostModal({comments}){   
 
     const {post} = useParams()
     const dispatch = useDispatch()
+    const data = useSelector(RedditRealData)
 
     const currentPosts = useSelector(currentPostState)
 
@@ -35,12 +37,12 @@ function RedditPostModal({comments}){
     }
 
     useEffect(() => {
-        const selectedData = image_arr.filter((item) => item.text === post)
+        const selectedData = data.filter((item) =>item.id === post);
+        console.log(selectedData)
         dispatch(setCurrentPost({
-            name:selectedData[0].text,
-            img:selectedData[0].src,
-            likes:"500",
-            dislikes:"1000"
+            name:selectedData[0].titles,
+            likes:selectedData[0].ups,
+            dislikes:selectedData[0].ups
         }))
     },[post])
 
@@ -58,10 +60,17 @@ function RedditPostModal({comments}){
     }
 
 
+    let img_element;
+
+    if(currentPosts.img !== undefined){
+        img_element = <img src={currentPosts.img} alt="Defines the current post"/>
+    } else{
+        img_element = null;
+    }
 
 return (
     <div className="modal_post" id={post}>
-        <img src={currentPosts.img} alt="Defines the current post"/>
+        {img_element}
         <div className="lower_post">
             <div className="likes_dislikes">
                 <div className="likes">
@@ -73,7 +82,7 @@ return (
                     <p>{currentPosts.dislikes}</p>       
                 </div>
             </div>
-            <p>Desription</p>
+            <p>{currentPosts.name}</p>
             <div className="comments">
                 <BsChatRightTextFill className="comments" />
                 <p>{comments}</p>

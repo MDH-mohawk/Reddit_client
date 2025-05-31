@@ -1,17 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { image_arr } from "../../Mock_data";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { type } from "@testing-library/user-event/dist/type";
 
 export const Redditdata = createAsyncThunk("RedditPosts/getData",
-    async() => {
-        const data = await fetch("https://www.reddit.com/r/UXDesign.json",{
-            type:"GET"
-        }
-        )
+    async(category) => {
+        const data = await fetch(`https://www.reddit.com/r/${category}.json`)
         const json = await data.json()
-        console.log(json.data)
-        return json.data
+        console.log(json.data.children)
+        return json.data.children
     }
 )
 
@@ -21,7 +17,7 @@ export const Redditdata = createAsyncThunk("RedditPosts/getData",
 const RedditPostReducer = createSlice({
     name:"RedditPosts",
     initialState:{
-        mock_data:image_arr.filter(item => item.category === "Apps"),
+        mock_data:image_arr.filter(item => item.category === "UXDesign"),
         real_data:{},
         isPending:false,
         HasError:false
@@ -55,7 +51,17 @@ const RedditPostReducer = createSlice({
         .addCase(Redditdata.fulfilled, (state,action) => {
             state.isPending = false;
             state.HasError = false;
-            state.real_data = action.payload;
+            const data = action.payload.map((item) => {
+                return {
+                    key:action.payload.indexOf(item),
+                    id:item.data.id,
+                    titles:item.data.title,
+                    media:item.data.media,
+                    ups:item.data.ups,
+                    downs:item.data.downs
+                }    
+            });
+            state.real_data = data
         })
         .addCase(Redditdata.rejected,(state) => {
             state.isPending = false;
@@ -70,3 +76,6 @@ export default RedditPostReducer.reducer;
 export const {CatFilter} = RedditPostReducer.actions;
 export const {SearchFilter} = RedditPostReducer.actions;
 export const RedditPostsState = (state) => state.posts.mock_data;
+export const RedditRealData = (state) => state.posts.real_data;
+export const data_pending = (state) => state.posts.isPending;
+export const data_error= (state) => state.posts.HasError;

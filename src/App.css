@@ -26,11 +26,11 @@
 
 .main_content{
   display: flex;
-  height: max-content;
   margin: auto;
   margin-top:20px;
   width: 90%;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
 
 .reddit_data{

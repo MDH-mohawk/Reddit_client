@@ -20,7 +20,6 @@
     padding: 20px;
     justify-content: center;
     border-radius: 30px;
-    height: auto;
     width: 70%;
     margin: 30px;
     animation: onloadanim 1s ease-in;
@@ -35,8 +34,8 @@
 }
 
 .lower_post{
+    padding: 5px;
     display: flex;
-    padding: 20px;
     justify-content: space-between;
     color: white;
 }

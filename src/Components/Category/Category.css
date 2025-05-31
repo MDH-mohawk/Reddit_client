@@ -1,7 +1,7 @@
 .category_main{
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     margin: 5px;
     padding: 10px;
     border-radius: 50px;

@@ -7,7 +7,7 @@ import {changeCategory } from "../Categories/categorySlice";
 import {CatFilter } from "../Reddit_posts/RedditPostsSlice";
 import {categoryState } from "../Categories/categorySlice";
 import { AddSearchTerm } from "../Searchbar_header/SearchBarSlice";
-import { Redditdata } from "../Reddit_posts/RedditPostsSlice";
+import { Redditdata,data_pending,data_error } from "../Reddit_posts/RedditPostsSlice";
 
 
 function Category({cat}){
@@ -15,6 +15,9 @@ function Category({cat}){
         const dispatch = useDispatch();
         const currentCat = useSelector(categoryState);
         const {category} = useParams()
+
+        const pending = useSelector(data_pending);
+        const error = useSelector(data_error)
 
         let style = "category_main";
 
@@ -31,6 +34,8 @@ function Category({cat}){
             if(currentCat !== e.currentTarget.children[0].id){
             const unselected = document.getElementById(`${currentCat}`)
             unselected.classList.remove("categoryselected")
+            console.log(pending);
+            console.log(error)
             }
         }
         

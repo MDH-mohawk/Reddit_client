@@ -25,6 +25,11 @@
     animation: onloadanim 1s ease-in;
 }
 
+.post:hover{
+    background-color: #FF4500;
+    transition: 0.5s;
+}
+
 .post img{
     display: block;
     object-fit:contain;
@@ -42,40 +47,27 @@
 
 .likes_dislikes{
     width: 100px;
-    display: flex;
+    display: flex;  
     justify-content: space-evenly;
 }
 
 .arrow_up{
-    fill: none;
-    stroke: #00C86B;
+    fill: #00C86B;
+    stroke: #721F00;
     stroke-width: 1px;
     width: auto;
     height: 40px;
     margin: 0;
-    transition: 1s;
-}
-
-.arrow_up:hover{
-    fill: #00C86B;
-    stroke: none;
     transition: 1s;
 }
 
 .arrow_down{
-    fill:none;
-    stroke:#EF3535;
+    fill:#EF3535;
+    stroke:#721F00;
     stroke-width: 1px;
     width: auto;
     height: 40px;
     margin: 0;
-    transition: 1s;
-}
-
-.arrow_down:hover{
-    fill: #EF3535;
-    transition: 2s;
-    stroke: none;
     transition: 1s;
 }
 

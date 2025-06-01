@@ -1,13 +1,13 @@
 import React,{useState} from "react";
 import Category from "../Category/Category";
 import "./Categories.css";
-import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowBack,IoIosArrowForward } from "react-icons/io";
 
 function Categories({arr}){
-    const [pos,setPos] = useState(-95)
+    const [pos,setPos] = useState(-210)
 
     function onClick() {
-        return setPos((prevPos) => (prevPos === -95? 0 : -95))
+        setPos((prevPos) => (prevPos === -210? 0 : -210))
     }
     
 
@@ -15,6 +15,7 @@ function Categories({arr}){
         return <Category key={item} cat={item}/>
     })
 
+    const arrow = pos === 0?<IoIosArrowBack className="collapse_arrow" onClick={onClick} data-testid="sidebar_arrow"/>:<IoIosArrowForward className="collapse_arrow" onClick={onClick} data-testid="sidebar_arrow"/>
     
 
     return (
@@ -25,7 +26,7 @@ function Categories({arr}){
         <div className="categories_overview_mobile" data-testid="sidebar" style={{
                 right:`${pos}px`
         }}>
-            <IoIosArrowBack className="collapse_arrow" onClick={onClick} data-testid="sidebar_arrow"/>
+            {arrow}
             {categories}
 
         </div>

@@ -25,6 +25,9 @@
     padding: 30px;
     animation: onloadanim ease-in;
     animation-duration: 1.5s;
+    width: 50%;
+    margin-top: 50px;
+    margin-right: 50px;
 }
 
 .modal_post img{
@@ -41,44 +44,11 @@
     color: white;
 }
 
-.likes_dislikes{
-    width: 100px;
-    display: flex;
-    justify-content: center;
-}
-
-.arrow_up{
-    fill: none;
-    stroke: #00C86B;
-    stroke-width: 1px;
-    width: auto;
-    height: 40px;
-    margin: 0;
-}
-
-.arrow_up:hover{
-    fill: #00C86B;
-    stroke: none;
-}
-
-.arrow_down{
-    fill:none;
-    stroke:#EF3535;
-    stroke-width: 1px;
-    width: auto;
-    height: 40px;
-    margin: 0;
-}
-
-.arrow_down:hover{
-    fill: #EF3535;
-    transition: 2s;
-    stroke: none;
-}
 
 .comments{
     padding:5px;
-    width: auto;
+    min-width: 20px;
+    min-height: 20px;
     fill: white;
     align-self: center;
 }
@@ -101,6 +71,7 @@
     }
 
     .likes_dislikes{
+        flex-direction: column;
         width: 60px;
     }
 

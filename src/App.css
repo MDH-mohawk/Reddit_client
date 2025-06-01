@@ -29,20 +29,22 @@
   margin: auto;
   margin-top:20px;
   width: 90%;
+  justify-content: center;
 }
 
 .reddit_data{
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .posts{
   flex: 2;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-right: 20px;
 }
 
 .categories{

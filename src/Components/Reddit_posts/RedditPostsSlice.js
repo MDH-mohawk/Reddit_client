@@ -66,7 +66,8 @@ const RedditPostReducer = createSlice({
                     ups:item.data.ups,
                     downs:item.data.downs,
                     author:item.data.author,
-                    img:images
+                    img:images,
+                    comments:item.data
                 }    
             });
             state.real_data = data

@@ -39,6 +39,14 @@
   align-items: center;
 }
 
+#error_message{
+  color: white;
+}
+
+#Loading_message{
+  color:white;
+}
+
 .posts{
   flex: 2;
   display: flex;

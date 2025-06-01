@@ -1,4 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
+
+export const getRedditComments = createAsyncThunk(
+    "currentpost/comments", async({category,postid},thunkAPI) =>
+        {   const data = await fetch(`https://www.reddit.com/comments/${postid.toString()}.json`)
+            const json = await data.json();
+            return json[1].data.children
+        }   
+)
 
 const RedditPostModalReducer = createSlice({
     name:"CurrentPost",
@@ -6,16 +14,37 @@ const RedditPostModalReducer = createSlice({
         name:"",
         likes:"",
         dislikes:"",
-        img:null
+        img:null,
+        comments:[],
+        commentsPending:false,
+        commentsError:false
     },
     reducers:{
         setCurrentPost:(state,action) => {
-            const {name,likes,img,dislikes} = action.payload
+            const {name,likes,img,dislikes,explain} = action.payload
                 state.name = name;
                 state.likes = likes;
                 state.dislikes = dislikes;
                 state.img = img;
+                state.explain = explain
         }
+    },
+    extraReducers:(builder) =>{
+        builder.addCase(getRedditComments.pending,(state) =>{
+            state.commentsPending = true;
+            state.commentsError = false;
+        });
+        builder.addCase(getRedditComments.fulfilled,(state,action) => {
+            state.commentsPending = false;
+            state.commentsError = false;
+            const comments = action.payload.map((item) => item.data.body);
+            console.log(comments)
+            state.comments = comments
+        });
+        builder.addCase(getRedditComments.rejected,(state) =>{
+            state.commentsPending = false;
+            state.commentsError = true;
+        })
     }
 })
 

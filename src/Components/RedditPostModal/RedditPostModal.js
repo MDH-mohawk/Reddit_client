@@ -6,16 +6,18 @@ import { currentPostState } from "./RedditPostModalSlice";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import "../RedditPostModal/RedditPostModelStyle.css"
-import { image_arr } from "../../Mock_data";
 import { useDispatch } from "react-redux";
 import { setCurrentPost } from "./RedditPostModalSlice";
 import { RedditRealData } from "../Reddit_posts/RedditPostsSlice";
+import { getRedditComments } from "./RedditPostModalSlice";
+import { categoryState } from "../Categories/categorySlice";
 
-function RedditPostModal({comments}){   
+function RedditPostModal(){   
 
     const {post} = useParams()
     const dispatch = useDispatch()
-    const data = useSelector(RedditRealData)
+    const data = useSelector(RedditRealData);
+    const cat = useSelector(categoryState)
 
     const currentPosts = useSelector(currentPostState)
 
@@ -37,12 +39,13 @@ function RedditPostModal({comments}){
     }
 
     useEffect(() => {
-        const selectedData = data.filter((item) =>item.id === post);
-        console.log(selectedData)
+        const selectedData = Object.values(data).filter((item) =>item.id === post);
         dispatch(setCurrentPost({
-            name:selectedData[0].titles,
+            name:selectedData[0].title,
             likes:selectedData[0].ups,
-            dislikes:selectedData[0].ups
+            dislikes:selectedData[0].downs,
+            explain:selectedData[0].extra_text,
+            comments:[]
         }))
     },[post])
 
@@ -59,7 +62,6 @@ function RedditPostModal({comments}){
         }
     }
 
-
     let img_element;
 
     if(currentPosts.img !== undefined){
@@ -67,6 +69,13 @@ function RedditPostModal({comments}){
     } else{
         img_element = null;
     }
+
+    function handleComments(){
+        dispatch(getRedditComments({category:cat,postid:post}));
+    }
+    console.log(currentPosts.comments.map((item) => item))
+
+    
 
 return (
     <div className="modal_post" id={post}>
@@ -82,13 +91,17 @@ return (
                     <p>{currentPosts.dislikes}</p>       
                 </div>
             </div>
-            <p>{currentPosts.name}</p>
+            <div id="post_text">
+                <p id="post_modal_description">{currentPosts.name}</p>
+                <p id="extra_post_text">{currentPosts.explain}</p>
+            </div>
             <div className="comments">
-                <BsChatRightTextFill className="comments" />
-                <p>{comments}</p>
+                <BsChatRightTextFill className="comments" onClick={handleComments}/>
             </div>
         </div>
-        <div className="Commentlist">{comments}</div>
+        <div className="Commentlist">
+            {currentPosts.comments.map((item) =><p id="comment_item">{item}</p>)}
+        </div>
     </div>   
     )
 }

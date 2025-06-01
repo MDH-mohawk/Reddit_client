@@ -11,6 +11,11 @@ function RedditPosts(){
 
   if(error){
     console.log("Too many entries!")
+    return <p id="error_message">Too many entries! There's a maximum of 10 entries per minute. Wait a minute please</p>
+  }
+
+  while (pending){
+    return <p id="Loading_message">Loading</p>
   }
 
   

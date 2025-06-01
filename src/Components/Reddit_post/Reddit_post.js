@@ -46,15 +46,13 @@ function RedditPost({img_src,description_text,post_id,author,ups,downs}){
         }
     }
 
-    function handlePost(e){
-        const current = e.currentTarget
+    function handlePost(){
         navigate(`/${currentcat}/${post_id}`)
-        console.log(post)
     }
 
 
     return (
-                <div className="post" onClick={handlePost} id={post_id}>
+                <div className="post" id={post_id}>
                     {!img_src.match(/\.(jpe?g)$/i)?null:<img src={img_src}/>}
                     <div className="lower_post">
                         <div className="likes_dislikes">
@@ -63,7 +61,7 @@ function RedditPost({img_src,description_text,post_id,author,ups,downs}){
                         </div>
                             <p id="post_description" >{description_text}</p>
                         <p>posted by <b>{author}</b></p>
-                        <button type="button"> see post</button>
+                        <button type="button" onClick={handlePost}> see post</button>
                     </div>
                 </div>
     )

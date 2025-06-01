@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { categoryState } from "../Categories/categorySlice";
 
-function RedditPost({img_src,description_text,post_id}){
+function RedditPost({img_src,description_text,post_id,author,ups,downs}){
 
     const {post} = useParams()
     const navigate = useNavigate()
@@ -52,18 +52,22 @@ function RedditPost({img_src,description_text,post_id}){
         navigate(`/${currentcat}/${current.id}`)
         console.log(post)
     }
-    
+
+    function commentsclick(){
+        console.log("the comments are clicked!")
+    }
 
     return (
                 <div className="post" onClick={handlePost} id={post_id}>
-                    <img src={img_src}/>
+                    {!img_src.match(/\.(jpe?g)$/i)?null:<img src={img_src}/>}
                     <div className="lower_post">
                         <div className="likes_dislikes">
-                            <TiArrowUpThick className="arrow_up" onClick={Toggle_like} data-testid="Like_button" fill={like}/>
-                            <TiArrowDownThick className="arrow_down" onClick={Toggle_dislike} data-testid="Dislike_button"/>
+                            <TiArrowUpThick className="arrow_up" onClick={Toggle_like} data-testid="Like_button" fill={like}/><p>{ups}</p>
+                            <TiArrowDownThick className="arrow_down" onClick={Toggle_dislike} data-testid="Dislike_button"/><p>{downs}</p>
                         </div>
-                        <p>{description_text}</p>
-                        <BsChatRightTextFill className="comments" />
+                        <p id="post_description" >{description_text}</p>
+                        <p>posted by <b>{author}</b></p>
+                        <BsChatRightTextFill className="comments" onClick={commentsclick}/>
                     </div>
                 </div>
     )

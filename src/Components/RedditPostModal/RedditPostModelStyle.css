@@ -38,24 +38,6 @@
     border-radius: 10px;
 }
 
-.lower_post{
-    display: flex;
-    align-items: center;
-    color: white;
-}
-
-
-.comments{
-    padding:5px;
-    min-width: 20px;
-    min-height: 20px;
-    fill: white;
-    align-self: center;
-}
-
-.comments:hover{
-    fill: black;
-}
 
 
 @media screen and (max-width:500px) {

@@ -7,7 +7,7 @@ export const Redditdata = createAsyncThunk("RedditPosts/getData",
         const data = await fetch(`https://www.reddit.com/r/${category}.json`)
         const json = await data.json()
         console.log(json.data.children)
-        return json.data.children
+        return json.data
     }
 )
 
@@ -51,14 +51,21 @@ const RedditPostReducer = createSlice({
         .addCase(Redditdata.fulfilled, (state,action) => {
             state.isPending = false;
             state.HasError = false;
-            const data = action.payload.map((item) => {
+            const {children} = action.payload
+            const data = children.map((item) => {
+                const images = item.data.url === undefined?"":item.data.url
+                if(item.data.preview === undefined){
+                    console.log("No images!")
+                }
                 return {
-                    key:action.payload.indexOf(item),
+                    key:children.indexOf(item),
                     id:item.data.id,
                     titles:item.data.title,
                     media:item.data.media,
                     ups:item.data.ups,
-                    downs:item.data.downs
+                    downs:item.data.downs,
+                    author:item.data.author,
+                    img:images
                 }    
             });
             state.real_data = data

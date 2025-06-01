@@ -8,7 +8,7 @@ import { Redditdata,RedditRealData } from './Components/Reddit_posts/RedditPosts
 
 
 const categories = [
-  "UXDesign","gamedev","GameDevelopment"
+  "UXDesign","gamedev","GameDevelopment","PalWorld"
 ]
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
 
   useEffect(() =>{
     dispatch(Redditdata(category))
-  },[])
+  },[category])
 
   return (
         <div className="App">    

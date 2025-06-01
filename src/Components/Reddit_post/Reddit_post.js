@@ -48,14 +48,10 @@ function RedditPost({img_src,description_text,post_id,author,ups,downs}){
 
     function handlePost(e){
         const current = e.currentTarget
-        console.log(typeof current.children[1].children[1].value)
-        navigate(`/${currentcat}/${current.id}`)
+        navigate(`/${currentcat}/${post_id}`)
         console.log(post)
     }
 
-    function commentsclick(){
-        console.log("the comments are clicked!")
-    }
 
     return (
                 <div className="post" onClick={handlePost} id={post_id}>
@@ -65,9 +61,9 @@ function RedditPost({img_src,description_text,post_id,author,ups,downs}){
                             <TiArrowUpThick className="arrow_up" onClick={Toggle_like} data-testid="Like_button" fill={like}/><p>{ups}</p>
                             <TiArrowDownThick className="arrow_down" onClick={Toggle_dislike} data-testid="Dislike_button"/><p>{downs}</p>
                         </div>
-                        <p id="post_description" >{description_text}</p>
+                            <p id="post_description" >{description_text}</p>
                         <p>posted by <b>{author}</b></p>
-                        <BsChatRightTextFill className="comments" onClick={commentsclick}/>
+                        <button type="button"> see post</button>
                     </div>
                 </div>
     )

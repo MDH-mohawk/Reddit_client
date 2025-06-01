@@ -60,7 +60,8 @@ const RedditPostReducer = createSlice({
                 return {
                     key:children.indexOf(item),
                     id:item.data.id,
-                    titles:item.data.title,
+                    title:item.data.title,
+                    extra_text:item.data.selftext,
                     media:item.data.media,
                     ups:item.data.ups,
                     downs:item.data.downs,

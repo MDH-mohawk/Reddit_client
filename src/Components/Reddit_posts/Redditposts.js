@@ -19,7 +19,7 @@ function RedditPosts(){
     <div className='posts'>
       {
       Object.values(posts).map((item) => {
-      return <RedditPost key={item.key} post_id={item.id} img_src={item.img} description_text={item.titles} author={item.author} ups={item.ups} downs={item.downs}/>
+      return <RedditPost key={item.key} post_id={item.id} img_src={item.img} description_text={item.title} author={item.author} ups={item.ups} downs={item.downs}/>
       })
       }
     </div>

@@ -26,11 +26,6 @@
     animation: onloadanim 1s ease-in;
 }
 
-.post:hover{
-    background-color: #FF4500;
-    transition: 0.5s;
-}
-
 .post img{
     display: block;
     object-fit:contain;
@@ -44,6 +39,23 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+
+.lower_post button{
+    min-height: 40px;
+    text-wrap:nowrap;
+    border-radius: 10px;
+    padding: 10px;
+    font-size:20px;
+    background: none;
+    color: white;
+    transition: 1s;
+}
+
+.lower_post button:hover{
+    background-color:#FF4500;
+    transition: 1s;
 }
 
 .likes_dislikes{
@@ -73,7 +85,9 @@
 }
 
 #post_description{
-    font-size:20px
+    font-size:20px;
+    min-width: 50%;
+    max-width: 50%;
 }
 
 .comments{

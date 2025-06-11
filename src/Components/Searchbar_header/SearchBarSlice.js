@@ -5,6 +5,7 @@ const searchBarReducer = createSlice({
     initialState:{
         searchTerm:""
     },
+    //Changing the searchTerm based on the value of the input
     reducers:{
         AddSearchTerm:(state,action) => {
             state.searchTerm = action.payload;

@@ -8,6 +8,7 @@ export const Redditdata = createAsyncThunk("RedditPosts/getData",
     async(category) => {
         const data = await fetch(`https://www.reddit.com/r/${category}.json`)
         const json = await data.json()
+        console.log(data)
         console.log(json.data.children)
         return json.data
     }

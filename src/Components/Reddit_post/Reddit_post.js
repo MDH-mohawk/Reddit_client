@@ -3,9 +3,13 @@ import './Reddit_post.css';
 import { TiArrowUpThick } from "react-icons/ti";
 import { TiArrowDownThick } from "react-icons/ti";
 import { useNavigate} from "react-router";
+import { useSelector } from 'react-redux';
+import { categoryState } from '../Categories/categorySlice';
 
 
 function RedditPost({img_src,description_text,post_id,author,ups,downs}){
+
+    const currentcat = useSelector(categoryState)
 
     const navigate = useNavigate()
 

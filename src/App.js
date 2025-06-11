@@ -7,21 +7,25 @@ import { useEffect } from 'react';
 import { Redditdata,RedditRealData } from './Components/Reddit_posts/RedditPostsSlice';
 
 
+//predetermined categories for filtering the Reddit API call request
 const categories = [
   "UXDesign","gamedev","GameDevelopment","PalWorld"
 ]
 
 function App() {
 
-  const data = useSelector(RedditRealData)
+
   const dispatch = useDispatch();
   const {category} = useParams();
 
-
+  //Request data from the reddit API when the category variable changes.
+  //This makes sure there is always information to load. UseEffect is perfect for this
   useEffect(() =>{
     dispatch(Redditdata(category))
   },[category])
 
+
+  //Rendering the application
   return (
         <div className="App">    
           <SearchBarHeader/>

@@ -1,13 +1,16 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 
+
+//API call thunk function for retrieving the comments of an individual post
 export const getRedditComments = createAsyncThunk(
-    "currentpost/comments", async({category,postid},thunkAPI) =>
+    "currentpost/comments", async({postid},thunkAPI) =>
         {   const data = await fetch(`https://www.reddit.com/comments/${postid.toString()}.json`)
             const json = await data.json();
             return json[1].data.children
         }   
 )
 
+//reducer specific for individual post page
 const RedditPostModalReducer = createSlice({
     name:"CurrentPost",
     initialState:{

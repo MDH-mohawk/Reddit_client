@@ -3,12 +3,13 @@ import Categories from '../Categories/Categories';
 
 jest.mock('../Category/Category.js', () => () => <div>HI</div>)
 
+//Testing if the position gets changed on click
+
 describe("Category mobile side menu",() => {
     test("The sidebar appears!",() => {
 
         //Setup
-
-        //Mock Click function
+        //  Mock Click function
         onclick = jest.fn()
         render(<Categories arr={[]} catClick={onclick}/>)
         const button = screen.getByTestId("sidebar_arrow");

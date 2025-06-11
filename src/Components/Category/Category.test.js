@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 
+//mock reducer for testing purposes
 const mockReducer = createSlice({
     name:"category",
     initialState:{
@@ -14,6 +15,7 @@ const mockReducer = createSlice({
     reducers:{}
 })
 
+// mock store added for testing purposes
 const mockStore = configureStore({
     reducer:{
         categories:mockReducer.reducer
@@ -23,7 +25,6 @@ const mockStore = configureStore({
 
 
 describe("Category component",() => {
-    
     test("New class is added to classlist of Category component button",() => {
 
         //Setup

@@ -1,5 +1,7 @@
 import {createSlice } from "@reduxjs/toolkit";
 
+//Slice to keep hold of the current selected category as a state in the store
+
 const categoriesReducer = createSlice({
     name:'categories',
     initialState:{

@@ -14,6 +14,8 @@ import { categoryState } from "../Categories/categorySlice";
 
 function RedditPostModal(){   
 
+
+    //different states used in functions
     const {post} = useParams()
     const dispatch = useDispatch()
     const data = useSelector(RedditRealData);
@@ -21,23 +23,7 @@ function RedditPostModal(){
 
     const currentPosts = useSelector(currentPostState)
 
-    const[like,setLike] = useState("");
-    const [dislike,setDislike] = useState("")
-
-    function Toggle_like(e){
-        const current = e.currentTarget;
-        if(like === ""){
-            current.style.fill = "#00C86B";
-            current.style.stroke = "none";
-            setLike("#00C86B")
-        }
-        else{
-            current.style.fill = "";
-            current.style.stroke = "#00C86B";
-            setLike("")
-        }
-    }
-
+    // Retrieving the data for make an individual post page
     useEffect(() => {
         const selectedData = Object.values(data).filter((item) =>item.id === post);
         dispatch(setCurrentPost({
@@ -49,19 +35,7 @@ function RedditPostModal(){
         }))
     },[post])
 
-    function Toggle_dislike(e){
-        if(dislike === ""){
-            e.target.style.fill = "#EF3535";
-            e.target.style.stroke = "none";
-            setDislike("#EF3535")
-        }
-        else{
-            e.target.style.fill = "";
-            e.target.style.stroke = "#EF3535";
-            setDislike("")
-        }
-    }
-
+    //function to remove image if there is no image
     let img_element;
 
     if(currentPosts.img !== undefined){
@@ -70,6 +44,7 @@ function RedditPostModal(){
         img_element = null;
     }
 
+    //retrieve the comments for an individual post
     function handleComments(){
         dispatch(getRedditComments({category:cat,postid:post}));
     }
@@ -83,11 +58,11 @@ return (
         <div className="lower_post">
             <div className="likes_dislikes">
                 <div className="likes">
-                    <TiArrowUpThick className="arrow_up" onClick={Toggle_like} data-testid="Like_button" fill={like}/>
+                    <TiArrowUpThick className="arrow_up" data-testid="Like_button"/>
                     <p>{currentPosts.likes}</p>
                 </div>
                 <div className="dislikes">
-                    <TiArrowDownThick className="arrow_down" onClick={Toggle_dislike} data-testid="Dislike_button"/>
+                    <TiArrowDownThick className="arrow_down" data-testid="Dislike_button"/>
                     <p>{currentPosts.dislikes}</p>       
                 </div>
             </div>

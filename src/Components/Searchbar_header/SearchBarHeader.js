@@ -4,21 +4,20 @@ import { useSearchParams,useParams,useNavigate} from "react-router";
 import { useDispatch,useSelector} from "react-redux";
 import { AddSearchTerm,searchState } from "./SearchBarSlice";
 import { Redditdata, SearchFilter } from "../Reddit_posts/RedditPostsSlice";
-import { categoryState } from "../Categories/categorySlice";
 
 
 function SearchBarHeader(){
 
+    //States and in-build function used
     const {category} = useParams()
-
     const dispatch = useDispatch()
-
     const navigate = useNavigate()
 
-    const currentcat = useSelector(categoryState)
+    //retrieving the current search term
     const searchTerm = useSelector(searchState)
     const [searchParams,setSearchParams] = useSearchParams({q:""})
 
+    //On reload the category will always begin at 'UXDesign' path
     useEffect(() => {
         if( category === undefined || category !== "UXDesign"){
             navigate("/UXDesign")
@@ -26,24 +25,24 @@ function SearchBarHeader(){
         dispatch(Redditdata(category))
     },[])
     
-
+    //handles the searchterm when it is submitted
     function handleSubmit(e){
         e.preventDefault();
-        dispatch(SearchFilter({category:currentcat,
+        if(e.currentTarget[0].value === ""){
+            dispatch(Redditdata(category))
+        }
+        dispatch(SearchFilter({category:category,
             text:searchTerm
         }))
         setSearchParams(prev => 
             {prev.set("q",searchTerm) 
             return prev})
         e.currentTarget[0].value = ""
-    
-
     }
 
+    //Keeps track current searchTerm when type in searchbar
     function handleChange(e){
-
         dispatch(AddSearchTerm(e.target.value))
-
     }
 
 

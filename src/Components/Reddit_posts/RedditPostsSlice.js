@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { image_arr } from "../../Mock_data";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+
+//Reddit posts based on category API call
 export const Redditdata = createAsyncThunk("RedditPosts/getData",
     async(category) => {
         const data = await fetch(`https://www.reddit.com/r/${category}.json`)
@@ -10,8 +12,6 @@ export const Redditdata = createAsyncThunk("RedditPosts/getData",
         return json.data
     }
 )
-
-
 
 
 const RedditPostReducer = createSlice({
@@ -23,27 +23,24 @@ const RedditPostReducer = createSlice({
         HasError:false
     },
     reducers:{
+        //Filtering posts based on category
         CatFilter:(state,action) => {
             let newarr = image_arr.filter(item => item.category === action.payload)
             state.mock_data = newarr
             return state;
         },
         SearchFilter:(state,action) => {
+            //Filtering posts based on search term
             let {category,text} = action.payload;
-            let newarr = image_arr.filter(item => item.category === category)
 
-            if (text === ""){
-                console.log("status?")
-                state.mock_data = newarr;
-            }
-
-            state.mock_data = newarr.filter(item => item.text.toLocaleLowerCase().includes(text));
+            state.real_data = state.real_data.filter(item => item.title.toLocaleLowerCase().includes(text));
 
             return state;
         }
     },
     extraReducers:(builder) => {
         builder
+        //actions based on different states of API call
         .addCase(Redditdata.pending,(state) => {
             state.isPending = true;
             state.HasError = false;

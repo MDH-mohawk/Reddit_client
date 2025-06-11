@@ -8,11 +8,13 @@ import { createSlice,configureStore } from "@reduxjs/toolkit";
 
 const mockedUseNav = jest.fn();
 
+//mocking the react router import
 jest.mock('react-router', () => ({
 ...jest.requireActual('react-router'),
     useNavigate: () => mockedUseNav
 }));
 
+// mock a reducer for test purposes
 const mockReducer = createSlice({
     name:"category",
     initialState:{
@@ -21,6 +23,7 @@ const mockReducer = createSlice({
     reducers:{}
 })
 
+// mock a redux store for test purposes
 const mockStore = configureStore({
     reducer:{
         categories:mockReducer.reducer
@@ -36,59 +39,4 @@ describe("Reddit post component",() =>{
             <RedditPost img_src={undefined} description_text="its this" />
         </Provider>);
     })
-
-    test("The like button gets filled",() => {
-
-        //Setup
-
-        const button = screen.getByTestId("Like_button");
-
-        //Exercise
-
-        fireEvent.click(button);
-
-        //Verify
-        expect(button.style.fill).toBe("#00C86B");
-
-    });
-
-    test("The like button gets a stroke",() => {
-
-        //Setup
-        const button = screen.getByTestId("Like_button");
-
-        //Exercise
-
-        fireEvent.click(button);
-
-        //Verify
-        expect(button.style.stroke).toBe("none");
-
-    });
-    
-    test("The dislike button gets filled",() => {
-
-        //Setup
-        const button = screen.getByTestId("Dislike_button");
-
-        //Exercise
-        fireEvent.click(button);
-
-        //Verify
-        expect(button.style.fill).toBe("#EF3535")
-    })
-
-    test("The dislike button gets a stroke",() => {
-
-        //Setup
-        const button = screen.getByTestId("Dislike_button");
-
-        //Exercise
-
-        fireEvent.click(button);
-
-        //Verify
-        expect(button.style.stroke).toBe("none");
-
-    });
 })

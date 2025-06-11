@@ -9,11 +9,14 @@ function RedditPosts(){
   const pending = useSelector(data_pending);
   const error = useSelector(data_error);
 
+  //Showing error if too many entries have been made
+  //Bedause 10 queries per minute is the limit with Reddit API call
   if(error){
     console.log("Too many entries!")
     return <p id="error_message">Too many entries! There's a maximum of 10 entries per minute. Wait a minute please</p>
   }
 
+  //Loading message if the API call hasn't returned data yet
   while (pending){
     return <p id="Loading_message">Loading</p>
   }

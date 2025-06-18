@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import {useEffect,useState} from "react";
 import { BsChatRightTextFill } from "react-icons/bs";
 import { TiArrowUpThick } from "react-icons/ti";
 import { TiArrowDownThick } from "react-icons/ti";
@@ -16,10 +16,7 @@ import Comment from "../Comment/Comment"
 function RedditPostModal(){   
 
     //comments display button
-    let comdis = false
-
-    console.log(comdis)
-
+    const [comdis,setComdis] = useState(false)
 
     //different states used in functions
     const {post} = useParams()
@@ -29,12 +26,14 @@ function RedditPostModal(){
 
     const currentPosts = useSelector(currentPostState)
 
+    console.log(currentPosts.img)
+
     // Retrieving the data for make an individual post page
     useEffect(() => {
         const selectedData = Object.values(data).filter((item) =>item.id === post);
         dispatch(setCurrentPost({
             name:selectedData[0].title,
-            img:selectedData[0].img,
+            img:selectedData[0].img.match(/\.(jpe?g)$/i)?null:selectedData[0].img,
             likes:selectedData[0].ups,
             dislikes:selectedData[0].downs,
             explain:selectedData[0].extra_text,
@@ -42,28 +41,17 @@ function RedditPostModal(){
         }))
     },[post])
 
-    //function to remove image if there is no image
-    let img_element;
-
-    if(currentPosts.img !== undefined){
-        img_element = <img src={currentPosts.img} alt="Defines the current post"/>
-    } else{
-        img_element = null;
-    }
 
     //retrieve the comments for an individual post
     function handleComments(){
-        comdis = true
+        setComdis(true)
         console.log(comdis)
         dispatch(getRedditComments({category:cat,postid:post}));
     }
-    console.log(currentPosts.comments.map((item) => item))
-
     
 
 return (
     <div className="modal_post" id={post}>
-        {!currentPosts.img.match(/\.(jpe?g)$/i)?null:<img src={currentPosts.img}/>}
         <div className="lower_post">
             <div className="likes_dislikes">
                 <div className="likes">
@@ -72,7 +60,7 @@ return (
                 </div>
                 <div className="dislikes">
                     <TiArrowDownThick className="arrow_down" data-testid="Dislike_button"/>
-                    <p>{currentPosts.dislikes}</p>       
+                    <p>{currentPosts.dislikes}</p>
                 </div>
             </div>
             <div id="post_text">
@@ -83,9 +71,8 @@ return (
                 <BsChatRightTextFill className="comments" onClick={handleComments}/>
             </div>
         </div>
-        {comdis === true?<p>This is true</p>:null}
         <div className="Commentlist">
-            {currentPosts.comments.map((item) =><Comment key={item.key} body={item.body} author={item.author}/>)}
+            {comdis? currentPosts.comments.map((item) =><Comment key={item.key} body={item.body} author={item.author}/>):null}
         </div>
     </div>   
     )

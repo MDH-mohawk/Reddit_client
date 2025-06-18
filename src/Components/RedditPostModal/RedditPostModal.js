@@ -1,4 +1,4 @@
-import {useState,useEffect} from "react";
+import {useEffect} from "react";
 import { BsChatRightTextFill } from "react-icons/bs";
 import { TiArrowUpThick } from "react-icons/ti";
 import { TiArrowDownThick } from "react-icons/ti";
@@ -11,8 +11,14 @@ import { setCurrentPost } from "./RedditPostModalSlice";
 import { RedditRealData } from "../Reddit_posts/RedditPostsSlice";
 import { getRedditComments } from "./RedditPostModalSlice";
 import { categoryState } from "../Categories/categorySlice";
+import Comment from "../Comment/Comment"
 
 function RedditPostModal(){   
+
+    //comments display button
+    let comdis = false
+
+    console.log(comdis)
 
 
     //different states used in functions
@@ -28,6 +34,7 @@ function RedditPostModal(){
         const selectedData = Object.values(data).filter((item) =>item.id === post);
         dispatch(setCurrentPost({
             name:selectedData[0].title,
+            img:selectedData[0].img,
             likes:selectedData[0].ups,
             dislikes:selectedData[0].downs,
             explain:selectedData[0].extra_text,
@@ -46,6 +53,8 @@ function RedditPostModal(){
 
     //retrieve the comments for an individual post
     function handleComments(){
+        comdis = true
+        console.log(comdis)
         dispatch(getRedditComments({category:cat,postid:post}));
     }
     console.log(currentPosts.comments.map((item) => item))
@@ -54,7 +63,7 @@ function RedditPostModal(){
 
 return (
     <div className="modal_post" id={post}>
-        {img_element}
+        {!currentPosts.img.match(/\.(jpe?g)$/i)?null:<img src={currentPosts.img}/>}
         <div className="lower_post">
             <div className="likes_dislikes">
                 <div className="likes">
@@ -74,8 +83,9 @@ return (
                 <BsChatRightTextFill className="comments" onClick={handleComments}/>
             </div>
         </div>
+        {comdis === true?<p>This is true</p>:null}
         <div className="Commentlist">
-            {currentPosts.comments.map((item) =><p id="comment_item">{item}</p>)}
+            {currentPosts.comments.map((item) =><Comment key={item.key} body={item.body} author={item.author}/>)}
         </div>
     </div>   
     )

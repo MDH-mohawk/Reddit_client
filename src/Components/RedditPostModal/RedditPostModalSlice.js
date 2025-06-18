@@ -6,6 +6,7 @@ export const getRedditComments = createAsyncThunk(
     "currentpost/comments", async({postid},thunkAPI) =>
         {   const data = await fetch(`https://www.reddit.com/comments/${postid.toString()}.json`)
             const json = await data.json();
+            console.log(json[1].data.children)
             return json[1].data.children
         }   
 )
@@ -40,7 +41,13 @@ const RedditPostModalReducer = createSlice({
         builder.addCase(getRedditComments.fulfilled,(state,action) => {
             state.commentsPending = false;
             state.commentsError = false;
-            const comments = action.payload.map((item) => item.data.body);
+            const comments = action.payload.map((item) => {
+                return {
+                    key:item.data.id,
+                    body:item.data.body,
+                    author:item.data.author
+                }
+            });
             console.log(comments)
             state.comments = comments
         });

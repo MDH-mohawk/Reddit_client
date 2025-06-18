@@ -20,6 +20,7 @@ const RedditPostReducer = createSlice({
     initialState:{
         mock_data:image_arr.filter(item => item.category === "UXDesign"),
         real_data:{},
+        search_data:{},
         isPending:false,
         HasError:false
     },
@@ -34,7 +35,7 @@ const RedditPostReducer = createSlice({
             //Filtering posts based on search term
             let {category,text} = action.payload;
 
-            state.real_data = state.real_data.filter(item => item.title.toLocaleLowerCase().includes(text));
+            state.search_data = state.real_data.filter(item => item.title.toLocaleLowerCase().includes(text));
 
             return state;
         }
@@ -84,5 +85,6 @@ export const {CatFilter} = RedditPostReducer.actions;
 export const {SearchFilter} = RedditPostReducer.actions;
 export const RedditPostsState = (state) => state.posts.mock_data;
 export const RedditRealData = (state) => state.posts.real_data;
+export const RedditSearchData = (state) => state.posts.search_data;
 export const data_pending = (state) => state.posts.isPending;
 export const data_error= (state) => state.posts.HasError;

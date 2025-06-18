@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import "./SearchBarHeader.css";
 import { useSearchParams,useParams,useNavigate} from "react-router";
 import { useDispatch,useSelector} from "react-redux";
@@ -15,6 +15,7 @@ function SearchBarHeader(){
 
     //retrieving the current search term
     const searchTerm = useSelector(searchState)
+    const [term,setTerm] = useState("")
     const [searchParams,setSearchParams] = useSearchParams({q:""})
 
     //On reload the category will always begin at 'UXDesign' path
@@ -28,21 +29,24 @@ function SearchBarHeader(){
     //handles the searchterm when it is submitted
     function handleSubmit(e){
         e.preventDefault();
+        dispatch(AddSearchTerm(e.currentTarget[0].value))
         if(e.currentTarget[0].value === ""){
-            dispatch(Redditdata(category))
+            dispatch(SearchFilter({category:category,
+            text:e.currentTarget[0].value
+        }))
         }
         dispatch(SearchFilter({category:category,
-            text:searchTerm
+            text:e.currentTarget[0].value
         }))
         setSearchParams(prev => 
-            {prev.set("q",searchTerm) 
+            {prev.set("q",e.currentTarget[0].value) 
             return prev})
         e.currentTarget[0].value = ""
     }
 
     //Keeps track current searchTerm when type in searchbar
     function handleChange(e){
-        dispatch(AddSearchTerm(e.target.value))
+        setTerm(e.target.value)
     }
 
 

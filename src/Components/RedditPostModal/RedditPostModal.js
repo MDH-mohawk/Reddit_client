@@ -15,7 +15,7 @@ import Comment from "../Comment/Comment"
 
 function RedditPostModal(){   
 
-    //comments display button
+    //comments display variables using useState, maybe adding this to the store later
     const [comdis,setComdis] = useState(false)
 
     //different states used in functions

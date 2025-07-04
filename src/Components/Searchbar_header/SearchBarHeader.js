@@ -28,13 +28,9 @@ function SearchBarHeader(){
     
     //handles the searchterm when it is submitted
     function handleSubmit(e){
+        console.log("search value:" + e.currentTarget[0].value)
         e.preventDefault();
         dispatch(AddSearchTerm(e.currentTarget[0].value))
-        if(e.currentTarget[0].value === ""){
-            dispatch(SearchFilter({category:category,
-            text:e.currentTarget[0].value
-        }))
-        }
         dispatch(SearchFilter({category:category,
             text:e.currentTarget[0].value
         }))

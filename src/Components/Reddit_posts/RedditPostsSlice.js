@@ -8,7 +8,6 @@ export const Redditdata = createAsyncThunk("RedditPosts/getData",
     async(category) => {
         const data = await fetch(`https://www.reddit.com/r/${category}.json`)
         const json = await data.json()
-        console.log(data)
         console.log(json.data.children)
         return json.data
     }
@@ -53,9 +52,6 @@ const RedditPostReducer = createSlice({
             const {children} = action.payload
             const data = children.map((item) => {
                 const images = item.data.url === undefined?"":item.data.url
-                if(item.data.preview === undefined){
-                    console.log("No images!")
-                }
                 return {
                     key:children.indexOf(item),
                     id:item.data.id,

@@ -29,8 +29,8 @@ function Category({cat}){
         //Handling selecting the category
         function handlecategory(e){
             dispatch(Redditdata(cat))
+            //changes the category state
             dispatch(changeCategory({category:cat}))
-            dispatch(CatFilter(cat))
             //clearing search when category get clicked on
             dispatch(AddSearchTerm(""))
             //remove a class for styling when a category is not selected

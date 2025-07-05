@@ -61,7 +61,9 @@ function RedditPostModal(){
 
 return (
     <div className="modal_post" id={post}>
+        <div id="image_scroll">
         {currentPosts.img === null?null:<img src={currentPosts.img}/>}
+        </div>
         <div className="lower_post">
             <div className="likes_dislikes">
                 <div className="likes">

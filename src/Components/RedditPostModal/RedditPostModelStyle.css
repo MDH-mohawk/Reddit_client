@@ -32,7 +32,8 @@
 
 .modal_post img{
     display: block;
-    object-fit:scale-down;
+    object-fit:cover;
+    height: auto;
     margin: auto;
     width: 100%;
     border-radius: 10px;
@@ -54,7 +55,7 @@
 #extra_post_text{
     width: 80%;
     font-size: 20px;
-    height: 50vh;
+    max-height: 50vh;
     overflow-y: scroll;
     margin-bottom: 30px;
     padding: 15px;
@@ -99,6 +100,6 @@
     #extra_post_text{
     width: 80%;
     font-size: 15px;
-    height: 30vh;
+    max-height: 30vh;
     }
 }

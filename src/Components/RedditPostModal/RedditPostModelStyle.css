@@ -32,9 +32,9 @@
 
 .modal_post img{
     display: block;
-    object-fit:contain;
-    width: 100%;
+    object-fit:scale-down;
     margin: auto;
+    width: 100%;
     border-radius: 10px;
 }
 
@@ -67,21 +67,13 @@
 
 
 @media screen and (max-width:500px) {
-    .post img{
-        height: auto;
-        object-fit: cover;
-        border-radius: 20px;
-    }
+
     .post{
         height: auto;
         margin-bottom: 20px;
         padding: 10px;
     }
 
-    .likes_dislikes{
-        flex-direction: column;
-        width: 60px;
-    }
 
     .lower_post{
         padding: 5px;
@@ -91,5 +83,13 @@
     .lower_post p{
         font-size: 15px;
     }
+    #post_modal_description{
+    font-size:20px;
+    width: 70%;
+    }
     
+    #extra_post_text{
+    width: 80%;
+    font-size: 15px;
+    }
 }

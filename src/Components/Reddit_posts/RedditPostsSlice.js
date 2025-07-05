@@ -6,7 +6,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 //Reddit posts based on category API call
 export const Redditdata = createAsyncThunk("RedditPosts/getData",
     async(category) => {
-        const data = await fetch(`https://www.reddit.com/r/${category}.json`)
+        const data = await fetch(`https://www.reddit.com/r/${category}.json?raw_json=1`)
         const json = await data.json()
         console.log(json.data.children)
         return json.data
@@ -56,7 +56,7 @@ const RedditPostReducer = createSlice({
                     key:children.indexOf(item),
                     id:item.data.id,
                     title:item.data.title,
-                    extra_text:item.data.selftext,
+                    extra_text:item.data.selftext_html,
                     media:item.data.media,
                     ups:item.data.ups,
                     downs:item.data.downs,

@@ -23,13 +23,15 @@ function RedditPost({img_src,description_text,post_id,author,ups,downs}){
                 <div className="post" id={post_id}>
                     {!img_src.match(/\.(jpe?g)$/i)?null:<img src={img_src}/>}
                     <div className="lower_post">
+                        <p id="post_description" >{description_text}</p>
                         <div className="likes_dislikes">
                             <TiArrowUpThick className="arrow_up" data-testid="Like_button"/><p>{ups}</p>
                             <TiArrowDownThick className="arrow_down" data-testid="Dislike_button"/><p>{downs}</p>
                         </div>
-                            <p id="post_description" >{description_text}</p>
+                        <div id="author_and_button">
                         <p>posted by <b>{author}</b></p>
                         <button type="button" onClick={handlePost}> see post</button>
+                        </div>
                     </div>
                 </div>
     )

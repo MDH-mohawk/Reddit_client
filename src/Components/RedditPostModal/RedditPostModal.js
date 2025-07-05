@@ -13,7 +13,7 @@ import { getRedditComments } from "./RedditPostModalSlice";
 import { categoryState } from "../Categories/categorySlice";
 import Comment from "../Comment/Comment"
 
-function RedditPostModal(){   
+function RedditPostModal(){       
 
     //comments display variables using useState, maybe adding this to the store later
     const [comdis,setComdis] = useState(false)
@@ -32,6 +32,7 @@ function RedditPostModal(){
     useEffect(() => {
         const selectedData = Object.values(data).filter((item) =>item.id === post);
         console.log(selectedData[0].img)
+        console.log(selectedData[0].extra_text)
         dispatch(setCurrentPost({
             name:selectedData[0].title,
             img:selectedData[0].img.match(/\.(jpe?g)$/i)?selectedData[0].img:null,
@@ -42,7 +43,6 @@ function RedditPostModal(){
         }))
     },[post])
 
-
     //retrieve the comments for an individual post
     function handleComments(){
         setComdis(true)
@@ -50,6 +50,16 @@ function RedditPostModal(){
         dispatch(getRedditComments({category:cat,postid:post}));
     }
     
+
+    const stringToHTML = (str) => {
+	const parser = new DOMParser();
+	const doc = parser.parseFromString(str, 'text/html');
+	return doc.body;
+    };
+
+    const htmlObject = document.createElement("div");
+    htmlObject.innerHTML = currentPosts.explain
+    console.log(typeof htmlObject.firstChild)
 
 return (
     <div className="modal_post" id={post}>
@@ -67,7 +77,7 @@ return (
             </div>
             <div id="post_text">
                 <p id="post_modal_description">{currentPosts.name}</p>
-                <p id="extra_post_text">{currentPosts.explain}</p>
+                <div id="extra_post_text" dangerouslySetInnerHTML={{__html: currentPosts.explain}}></div>
             </div>
             <div className="comments">
                 <BsChatRightTextFill className="comments" onClick={handleComments}/>

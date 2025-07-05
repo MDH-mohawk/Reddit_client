@@ -21,7 +21,7 @@
     padding: 20px;
     justify-content: center;
     border-radius: 30px;
-    width: 70%;
+    width: 60%;
     margin: 30px;
     animation: onloadanim 1s ease-in;
 }
@@ -37,7 +37,8 @@
 .lower_post{
     padding: 5px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    flex-direction: column;
     align-items: center;
     color:white;
 }
@@ -53,6 +54,7 @@
     background: none;
     color: white;
     transition: 1s;
+    margin-left: 15px;
 }
 
 .lower_post button:hover{
@@ -62,8 +64,8 @@
 
 .likes_dislikes{
     width: 200px;
-    display: flex;  
-    justify-content: space-evenly;
+    display: flex;
+    justify-content: space-around;
 }
 
 .arrow_up{
@@ -88,8 +90,7 @@
 
 #post_description{
     font-size:20px;
-    min-width: 50%;
-    max-width: 50%;
+    max-width: 90%;
 }
 
 .comments{
@@ -102,6 +103,11 @@
     fill: black;
 }
 
+#author_and_button{
+    display: flex;
+    flex-direction: row;
+}
+
 
 @media screen and (max-width:500px) {
     .post img{
@@ -110,22 +116,28 @@
         border-radius: 20px;
     }
     .post{
+        margin: 0px;
         height: auto;
         margin-bottom: 20px;
         padding: 10px;
     }
 
     .likes_dislikes{
-        width: 60px;
+        flex-direction: row;
     }
 
     .lower_post{
         padding: 5px;
         align-items: center;
+        flex-direction: column;
     }
 
     .lower_post p{
         font-size: 15px;
+    }
+
+    #author_and_button{
+    flex-direction: column;
     }
     
 }

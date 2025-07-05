@@ -31,6 +31,7 @@
     border-radius: 30px;
     transition: 1s;
     font-size: 25px;
+    box-shadow: 6px 6px 12px rgb(15, 15, 15);
 }
 
 #go_back_button_modal:hover{
@@ -47,6 +48,7 @@
     padding: 30px;
     animation: onloadanim ease-in;
     animation-duration: 1.5s;
+    box-shadow: 6px 6px 12px rgb(15, 15, 15);
 }
 
 .modal_post img{
@@ -78,9 +80,9 @@
     overflow-x: hidden;
     margin-bottom: 30px;
     padding: 10px;
-    height: 20vh;
     background-color: #862705;
     border-radius: 15px;
+    max-height: 40vh;
 }
 
 #extra_post_text::-webkit-scrollbar{
@@ -109,12 +111,13 @@
 }
 
 #comments_array::-webkit-scrollbar{
-    width: 10px;
+    width: 20px;
 }
 
 #comments_array::-webkit-scrollbar-thumb{
     background-color: #FF4500;
     border-radius: 20px;
+    height: 40px;
 }
 
 #comment_item{
@@ -128,20 +131,24 @@
     justify-content: space-between;
 }
 
+.md a{
+    color: orange;
+}
+
 
 @media screen and (max-width:500px) {
 
     #modal_comp{
         width: 80%;
         position: absolute;
-        left: 0px;
+        left: 10px;
         top:50px;
     }
 
     .modal_post{
         padding: 15px;
-        width:fit-content;
         border-radius: 0px;
+        width: 80%;
     }
 
     .lower_post{
@@ -172,6 +179,12 @@
 
     #comments_array{
         height: 200px;
+    }
+
+    .md a{
+        display: block;
+        word-wrap:break-word;
+        width: 50vw;
     }
 
     #votes_comments{

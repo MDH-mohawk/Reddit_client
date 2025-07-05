@@ -16,8 +16,9 @@ import { useNavigate } from "react-router";
 
 function RedditPostModal(){       
 
-
+    // For navigation 
     const navigate = useNavigate()
+
     //comments display variables using useState, maybe adding this to the store later
     const [comdis,setComdis] = useState(false)
 
@@ -44,13 +45,19 @@ function RedditPostModal(){
         }))
     },[post])
 
-    //retrieve the comments for an individual post
+    //Retrieve the comments for an individual post
     function handleComments(){
         dispatch(getRedditComments({category:cat,postid:post}));
-        setComdis(true)
+        if(!comdis){
+            setComdis(true);
+        }
+        else{
+            setComdis(false);
+        }
         console.log(comdis)
     }
 
+    //Simple back button for navigating to the previous page
     function goback(){
         navigate(-1);
     }

@@ -14,6 +14,7 @@
 
 
 .post{
+    box-shadow: 6px 6px 12px rgb(15, 15, 15);
     display: flex;
     flex-direction: column;
     background-color:#721F00 ;

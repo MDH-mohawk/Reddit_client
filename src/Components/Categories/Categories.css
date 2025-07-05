@@ -1,4 +1,5 @@
 .categories_overview {
+    box-shadow: 6px 6px 12px rgb(15, 15, 15);
     background-color:#FF4500;
     display: flex;
     height:max-content;
@@ -10,12 +11,14 @@
 }
 
 .categories_overview_mobile {
-display: none;
+    display: none;
+    box-shadow: 6px 6px 12px rgb(15, 15, 15);
 }
 
 @media screen and (max-width:500px){
     .categories_overview{
         display: none;
+        
     }
 
     .categories_overview_mobile{

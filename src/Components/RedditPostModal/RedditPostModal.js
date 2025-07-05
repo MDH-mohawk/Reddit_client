@@ -12,9 +12,12 @@ import { RedditRealData } from "../Reddit_posts/RedditPostsSlice";
 import { getRedditComments } from "./RedditPostModalSlice";
 import { categoryState } from "../Categories/categorySlice";
 import Comment from "../Comment/Comment"
+import { useNavigate } from "react-router";
 
 function RedditPostModal(){       
 
+
+    const navigate = useNavigate()
     //comments display variables using useState, maybe adding this to the store later
     const [comdis,setComdis] = useState(false)
 
@@ -48,7 +51,13 @@ function RedditPostModal(){
         console.log(comdis)
     }
 
+    function goback(){
+        navigate(-1);
+    }
+
 return (
+    <div id="modal_comp">
+    <div id="go_back_button_modal" onClick={goback}>Go back</div>
     <div className="modal_post" id={post}>
         <div id="image_scroll">
         {currentPosts.img === null?null:<img src={currentPosts.img}/>}
@@ -82,6 +91,7 @@ return (
             </div>
         </div>:null}
     </div>   
+    </div>
     )
 }
 

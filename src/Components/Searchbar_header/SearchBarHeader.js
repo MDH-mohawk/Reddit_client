@@ -35,6 +35,7 @@ function SearchBarHeader(){
         dispatch(SearchFilter({category:category,
             text:e.currentTarget[0].value
         }))
+        navigate(`/${category}`)
         setSearchParams(prev => 
             {prev.set("q",e.currentTarget[0].value) 
             return prev})

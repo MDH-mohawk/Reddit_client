@@ -18,10 +18,8 @@ function App() {
   const posts = useSelector(RedditRealData);
   const searchposts = useSelector(RedditSearchData);
   const pending = useSelector(data_pending);
-  const error = useSelector(data_error);
   const term = useSelector(searchState);
   const dispatch = useDispatch();
-  const {category} = useParams();
   const cat = useSelector(categoryState)
 
 
@@ -35,15 +33,18 @@ function App() {
   //filter based on search results based on given category
    useEffect( ()=> {
     console.log("term:" + term)
+    console.log(term.length)
     if (term === "" && !pending){
       console.log(posts)
       dispatch(changeDispost(posts))
       console.log("the search term is empty")
     }
     else if(term.length > 0){
+      console.log("term is at least one")
+      console.log(searchposts)
       dispatch(changeDispost(searchposts))
     }
-    },[pending])
+    },[pending,term])
 
 
   //Rendering the application

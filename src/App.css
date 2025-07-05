@@ -82,5 +82,6 @@
   .posts{
     flex: none;
     width: 90%;
+    margin-right: 40px;
   }
 }

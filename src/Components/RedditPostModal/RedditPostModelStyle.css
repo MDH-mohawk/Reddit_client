@@ -69,10 +69,26 @@
     border-radius: 10px;
 }
 
+.Commentlist p{
+    color: white;
+    font-size:20px
+}
+
+#comments{
+    height: 300px;
+    overflow-y: scroll;
+}
+
 #comment_item{
     color:white
 }
 
+#votes_comments{
+    display: flex;
+    align-items: center;
+    width: 50%;
+    justify-content: space-between;
+}
 
 
 @media screen and (max-width:500px) {

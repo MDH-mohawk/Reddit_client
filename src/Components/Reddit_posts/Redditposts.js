@@ -1,6 +1,6 @@
 import RedditPost from "../Reddit_post/Reddit_post.js";
 import {useSelector} from 'react-redux';
-import { RedditRealData,RedditSearchData,data_error,data_pending} from "./RedditPostsSlice.js";
+import { RedditDispost, RedditRealData,RedditSearchData,data_error,data_pending} from "./RedditPostsSlice.js";
 import { searchState } from "../Searchbar_header/SearchBarSlice.js";
 import { useEffect,useState } from "react";
 import { useNavigate } from "react-router";
@@ -17,28 +17,10 @@ function RedditPosts(){
   const pending = useSelector(data_pending);
   const error = useSelector(data_error);
   const navigate = useNavigate();
+  const dispost = useSelector(RedditDispost)
 
   //Tried to create a script where the results for search are filtered. However dispost only is changed when the term is changed.
-
- const [dispost,setDispost] = useState({})
  
-   useEffect( ()=> {
-    console.log("term:" + term)
-    if (term === "" && !pending && !error){
-      console.log(posts)
-      setDispost(posts)
-      console.log("the search term is empty")
-    }
-    else if(term.length <= 0){
-      setDispost(posts);
-      console.log(dispost)
-    }
-    else if(term.length > 0){
-      setDispost(searchposts);
-      console.log(dispost)
-    }
-  },[term,pending,error])
-
   //Showing error if too many entries have been made
   //Bedause 10 queries per minute is the limit with Reddit API call
   if(error){

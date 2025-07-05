@@ -33,7 +33,7 @@ function RedditPostModal(){
         const selectedData = Object.values(data).filter((item) =>item.id === post);
         dispatch(setCurrentPost({
             name:selectedData[0].title,
-            img:selectedData[0].img.match(/\.(jpe?g)$/i)?selectedData[0].img:null,
+            img:selectedData[0].img.match(/\.(jpe?g|png)$/i)?selectedData[0].img:null,
             likes:selectedData[0].ups,
             dislikes:selectedData[0].downs,
             explain:selectedData[0].extra_text,
@@ -65,6 +65,11 @@ return (
         {currentPosts.img === null?null:<img src={currentPosts.img}/>}
         </div>
         <div className="lower_post">
+            <div id="post_text">
+                <p id="post_modal_description">{currentPosts.name}</p>
+                <div id="extra_post_text" dangerouslySetInnerHTML={{__html: currentPosts.explain}}></div>
+            </div>
+            <div id="votes_comments">
             <div className="likes_dislikes">
                 <div className="likes">
                     <TiArrowUpThick className="arrow_up" data-testid="Like_button"/>
@@ -75,16 +80,16 @@ return (
                     <p>{currentPosts.dislikes}</p>
                 </div>
             </div>
-            <div id="post_text">
-                <p id="post_modal_description">{currentPosts.name}</p>
-                <div id="extra_post_text" dangerouslySetInnerHTML={{__html: currentPosts.explain}}></div>
-            </div>
             <div className="comments">
                 <BsChatRightTextFill className="comments" onClick={handleComments}/>
             </div>
+            </div>
         </div>
         <div className="Commentlist">
-            {comdis? currentPosts.comments.map((item) =><Comment key={item.key} body={item.body} author={item.author}/>):null}
+            {comdis?<p>comments</p>:null}
+            <div id="comments">
+            {comdis? currentPosts.comments.map((item) =><Comment key={item.key} body={{__html: item.body}} author={item.author}/>):null}
+            </div>
         </div>
     </div>   
     )

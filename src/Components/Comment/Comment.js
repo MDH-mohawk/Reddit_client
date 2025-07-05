@@ -5,7 +5,7 @@ function Comment ({body,author}){
 
     return (
     <div className="comment">
-        <p>{body}</p>
+        <p dangerouslySetInnerHTML={body}></p>
         <br/>
         <p>By <b>{author}</b></p>
     </div>

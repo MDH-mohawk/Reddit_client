@@ -4,7 +4,7 @@ import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 //API call thunk function for retrieving the comments of an individual post
 export const getRedditComments = createAsyncThunk(
     "currentpost/comments", async({postid},thunkAPI) =>
-        {   const data = await fetch(`https://www.reddit.com/comments/${postid.toString()}.json`)
+        {   const data = await fetch(`https://www.reddit.com/comments/${postid.toString()}.json?raw_json=1`)
             const json = await data.json();
             console.log(json[1].data.children)
             return json[1].data.children
@@ -44,7 +44,7 @@ const RedditPostModalReducer = createSlice({
             const comments = action.payload.map((item) => {
                 return {
                     key:item.data.id,
-                    body:item.data.body,
+                    body:item.data.body_html,
                     author:item.data.author
                 }
             });

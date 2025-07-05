@@ -4,7 +4,9 @@ import { useDispatch,useSelector} from 'react-redux';
 import SearchBarHeader from './Components/Searchbar_header/SearchBarHeader'
 import Categories from './Components/Categories/Categories'
 import { useEffect } from 'react';
-import { Redditdata,RedditRealData } from './Components/Reddit_posts/RedditPostsSlice';
+import { data_error, data_pending, changeDispost,RedditRealData,RedditSearchData, CatFilter, Redditdata} from './Components/Reddit_posts/RedditPostsSlice';
+import { searchState } from './Components/Searchbar_header/SearchBarSlice';
+import { categoryState } from './Components/Categories/categorySlice';
 
 
 //predetermined categories for filtering the Reddit API call request
@@ -13,16 +15,35 @@ const categories = [
 ]
 
 function App() {
-
-
+  const posts = useSelector(RedditRealData);
+  const searchposts = useSelector(RedditSearchData);
+  const pending = useSelector(data_pending);
+  const error = useSelector(data_error);
+  const term = useSelector(searchState);
   const dispatch = useDispatch();
   const {category} = useParams();
+  const cat = useSelector(categoryState)
 
-  //Request data from the reddit API when the category variable changes.
-  //This makes sure there is always information to load. UseEffect is perfect for this
-  useEffect(() =>{
-    dispatch(Redditdata(category))
-  },[category])
+
+  //show the right posts based on category
+  useEffect(()=> {
+    console.log(cat)
+    console.log(posts)
+    dispatch(Redditdata(cat))
+  },[cat])
+
+  //filter based on search results based on given category
+   useEffect( ()=> {
+    console.log("term:" + term)
+    if (term === "" && !pending){
+      console.log(posts)
+      dispatch(changeDispost(posts))
+      console.log("the search term is empty")
+    }
+    else if(term.length > 0){
+      dispatch(changeDispost(searchposts))
+    }
+    },[pending])
 
 
   //Rendering the application

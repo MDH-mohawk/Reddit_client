@@ -4,6 +4,7 @@ import { useSearchParams,useParams,useNavigate} from "react-router";
 import { useDispatch,useSelector} from "react-redux";
 import { AddSearchTerm,searchState } from "./SearchBarSlice";
 import { Redditdata, SearchFilter } from "../Reddit_posts/RedditPostsSlice";
+import { changeCategory } from "../Categories/categorySlice";
 
 
 function SearchBarHeader(){
@@ -22,8 +23,8 @@ function SearchBarHeader(){
     useEffect(() => {
         if( category === undefined || category !== "UXDesign"){
             navigate("/UXDesign")
+            dispatch(changeCategory({category:"UXDesign"}))
         }
-        dispatch(Redditdata(category))
     },[])
     
     //handles the searchterm when it is submitted

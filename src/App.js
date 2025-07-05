@@ -3,7 +3,7 @@ import {useParams,Outlet} from 'react-router';
 import { useDispatch,useSelector} from 'react-redux';
 import SearchBarHeader from './Components/Searchbar_header/SearchBarHeader'
 import Categories from './Components/Categories/Categories'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { data_error, data_pending, changeDispost,RedditRealData,RedditSearchData, CatFilter, Redditdata} from './Components/Reddit_posts/RedditPostsSlice';
 import { searchState } from './Components/Searchbar_header/SearchBarSlice';
 import { categoryState } from './Components/Categories/categorySlice';
@@ -22,6 +22,8 @@ function App() {
   const dispatch = useDispatch();
   const cat = useSelector(categoryState)
 
+  const [results,setResults] = useState(true);
+
 
   //show the right posts based on category
   useEffect(()=> {
@@ -32,17 +34,23 @@ function App() {
 
   //filter based on search results based on given category
    useEffect( ()=> {
-    console.log("term:" + term)
-    console.log(term.length)
     if (term === "" && !pending){
       console.log(posts)
       dispatch(changeDispost(posts))
       console.log("the search term is empty")
+      setResults(true)
     }
     else if(term.length > 0){
-      console.log("term is at least one")
-      console.log(searchposts)
-      dispatch(changeDispost(searchposts))
+      if(searchposts.length <= 0){
+        console.log("no search results!")
+        setResults(false);
+        console.log(results);
+      }
+      else {
+        setResults(true);
+        console.log(results);
+        dispatch(changeDispost(searchposts))
+      }
     }
     },[pending,term])
 
@@ -53,7 +61,7 @@ function App() {
           <SearchBarHeader/>
           <div className='main_content'>
             <div className='reddit_data'>
-            <Outlet/>
+            {results?<Outlet/>:<p id='no_results'>No results with <b>{term}</b> ! Search again with another <i>term</i></p>}
             </div>
             <Categories className="categories" arr={categories}/>
           </div>

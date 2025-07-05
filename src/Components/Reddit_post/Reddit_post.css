@@ -126,6 +126,18 @@
         flex-direction: row;
     }
 
+    .likes{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .dislikes{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }    
+
     .lower_post{
         padding: 5px;
         align-items: center;

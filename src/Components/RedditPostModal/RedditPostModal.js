@@ -43,21 +43,10 @@ function RedditPostModal(){
 
     //retrieve the comments for an individual post
     function handleComments(){
+        dispatch(getRedditComments({category:cat,postid:post}));
         setComdis(true)
         console.log(comdis)
-        dispatch(getRedditComments({category:cat,postid:post}));
     }
-    
-
-    const stringToHTML = (str) => {
-	const parser = new DOMParser();
-	const doc = parser.parseFromString(str, 'text/html');
-	return doc.body;
-    };
-
-    const htmlObject = document.createElement("div");
-    htmlObject.innerHTML = currentPosts.explain
-    console.log(typeof htmlObject.firstChild)
 
 return (
     <div className="modal_post" id={post}>
@@ -67,7 +56,8 @@ return (
         <div className="lower_post">
             <div id="post_text">
                 <p id="post_modal_description">{currentPosts.name}</p>
-                <div id="extra_post_text" dangerouslySetInnerHTML={{__html: currentPosts.explain}}></div>
+                {currentPosts.explain === null?null:<p>Description:</p>}
+                {currentPosts.explain === null?null:<div id="extra_post_text" dangerouslySetInnerHTML={{__html: currentPosts.explain}}></div>}
             </div>
             <div id="votes_comments">
             <div className="likes_dislikes">
@@ -85,12 +75,12 @@ return (
             </div>
             </div>
         </div>
-        <div className="Commentlist">
+        {comdis?        <div className="Commentlist">
             {comdis?<p>comments</p>:null}
-            <div id="comments">
+            <div id="comments_array">
             {comdis? currentPosts.comments.map((item) =><Comment key={item.key} body={{__html: item.body}} author={item.author}/>):null}
             </div>
-        </div>
+        </div>:null}
     </div>   
     )
 }

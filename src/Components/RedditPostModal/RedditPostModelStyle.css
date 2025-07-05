@@ -55,14 +55,22 @@
 #extra_post_text{
     width: 80%;
     font-size: 20px;
-    max-height: 50vh;
     overflow-y: scroll;
+    overflow-x: hidden;
     margin-bottom: 30px;
     padding: 15px;
+    height: 20vh;
+    background-color: #862705;
+    border-radius: 15px;
 }
 
-::-webkit-scrollbar{
+#extra_post_text::-webkit-scrollbar{
     width: 20px;
+}
+
+#extra_post_text::-webkit-scrollbar-thumb{
+    background-color: #FF4500;
+    border-radius: 5px;
 }
 
 .Commentlist{
@@ -74,9 +82,20 @@
     font-size:20px
 }
 
-#comments{
+#comments_array{
     height: 300px;
     overflow-y: scroll;
+    background-color: #862705;
+    border-radius: 10px;
+}
+
+#comments_array::-webkit-scrollbar{
+    width: 20px;
+}
+
+#comments_array::-webkit-scrollbar-thumb{
+    background-color: #FF4500;
+    border-radius: 20px;
 }
 
 #comment_item{
@@ -99,6 +118,10 @@
         padding: 10px;
     }
 
+    .modal_post{
+        padding: 15px;
+        width: 70%;
+    }
 
     .lower_post{
         padding: 5px;
@@ -107,9 +130,10 @@
 
     .lower_post p{
         font-size: 15px;
+        padding: 5px;
     }
     #post_modal_description{
-    font-size:20px;
+    font-size:15px;
     width: 70%;
     }
     
@@ -118,4 +142,20 @@
     font-size: 15px;
     max-height: 30vh;
     }
+
+    .Commentlist p{
+    color: white;
+    font-size:15px
+    }
+
+    #comments_array{
+        height: 200px;
+    }
+
+    #votes_comments{
+        margin:10px;
+        width: 80%;
+        height: 30px;
+}
+
 }

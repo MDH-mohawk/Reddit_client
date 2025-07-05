@@ -54,6 +54,14 @@
 #extra_post_text{
     width: 80%;
     font-size: 20px;
+    height: 50vh;
+    overflow-y: scroll;
+    margin-bottom: 30px;
+    padding: 15px;
+}
+
+::-webkit-scrollbar{
+    width: 20px;
 }
 
 .Commentlist{
@@ -91,5 +99,6 @@
     #extra_post_text{
     width: 80%;
     font-size: 15px;
+    height: 30vh;
     }
 }

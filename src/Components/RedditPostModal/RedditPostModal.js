@@ -31,8 +31,6 @@ function RedditPostModal(){
     // Retrieving the data for make an individual post page
     useEffect(() => {
         const selectedData = Object.values(data).filter((item) =>item.id === post);
-        console.log(selectedData[0].img)
-        console.log(selectedData[0].extra_text)
         dispatch(setCurrentPost({
             name:selectedData[0].title,
             img:selectedData[0].img.match(/\.(jpe?g)$/i)?selectedData[0].img:null,
@@ -63,7 +61,7 @@ function RedditPostModal(){
 
 return (
     <div className="modal_post" id={post}>
-        <img src={currentPosts.img}/>
+        {currentPosts.img === null?null:<img src={currentPosts.img}/>}
         <div className="lower_post">
             <div className="likes_dislikes">
                 <div className="likes">

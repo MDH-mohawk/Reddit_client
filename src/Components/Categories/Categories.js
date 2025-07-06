@@ -20,11 +20,11 @@ function Categories({arr}){
     })
 
     //condition to change appearance of the arrow button on mobile categories menu
-    const arrow = pos === 0?<IoIosArrowForward className="collapse_arrow" onClick={onClick} data-testid="sidebar_arrow"/>:<IoIosArrowBack className="collapse_arrow" onClick={onClick} data-testid="sidebar_arrow"/>
+    const arrow = pos === 0?<IoIosArrowForward className="uncollapse_arrow" onClick={onClick} data-testid="sidebar_arrow"/>:<IoIosArrowBack className="collapse_arrow" onClick={onClick} data-testid="sidebar_arrow"/>
     
 
     return (
-        <div>
+        <div data-testid="test_cat_comp">
         <div className="categories_overview">
             {categories}
         </div>

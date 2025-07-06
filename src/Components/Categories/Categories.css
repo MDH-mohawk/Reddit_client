@@ -49,5 +49,18 @@
     .collapse_arrow:active{
         background-color:white;
     }
+
+    .uncollapse_arrow{
+        display: flex;
+        height: 30px;
+        width: 30px;
+        padding: 10px;
+        margin-left: 10px;
+        border-radius: 50%; 
+    }
+
+    .uncollapse_arrow:active{
+        background-color: white;
+    }
     
 }

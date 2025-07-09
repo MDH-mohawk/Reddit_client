@@ -21,8 +21,6 @@ const RedditPostReducer = createSlice({
         real_data:{},
         dispost:{},
         search_data:{},
-        isPending:false,
-        HasError:false
     },
     reducers:{
         //Filtering posts based on category

@@ -4,7 +4,6 @@ import { screen,fireEvent,render} from "@testing-library/react";
 import { Provider } from "react-redux";
 import { createSlice,configureStore } from "@reduxjs/toolkit";
 import { MemoryRouter, Route, Routes } from "react-router";
-import * as reactRedux from 'react-redux';
 
 const mockedUseNav = jest.fn();
 

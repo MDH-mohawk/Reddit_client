@@ -53,7 +53,7 @@ function SearchBarHeader(){
             <div className="SearchHeader">
                 <img src="https://www.iconpacks.net/icons/2/free-reddit-logo-icon-2436-thumb.png" alt="thumbs up" height="100px"/>
                 <div className="search">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} data-testid="test-submit" role="form">
                     <input type="text"  placeholder="search here"  name="search-input" data-testid="input_works" onChange={handleChange}></input>
                     </form>
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 50 50">

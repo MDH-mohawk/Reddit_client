@@ -65,12 +65,12 @@ function RedditPostModal(){
 return (
     <div id="modal_comp">
     <div id="go_back_button_modal" onClick={goback}>Go back</div>
-    <div className="modal_post" id={post}>
-        <div id="image_scroll">
-        {currentPosts.img === null?null:<img src={currentPosts.img}/>}
+    <div className="modal_post" id={post} data-testid="modal_test_post">
+        <div id="image_scroll" data-testid="img_modal_test">
+        {currentPosts.img === null?null:<img src={currentPosts.img} />}
         </div>
         <div className="lower_post">
-            <div id="post_text">
+            <div id="post_text" data-testid="test_explain">
                 <p id="post_modal_description">{currentPosts.name}</p>
                 {currentPosts.explain === null?null:<p>Description:</p>}
                 {currentPosts.explain === null?null:<div id="extra_post_text" dangerouslySetInnerHTML={{__html: currentPosts.explain}}></div>}
@@ -86,7 +86,7 @@ return (
                     <p>{currentPosts.dislikes}</p>
                 </div>
             </div>
-            <div className="comments">
+            <div className="comments" data-testid="comment_test_button">
                 <BsChatRightTextFill className="comments" onClick={handleComments}/>
             </div>
             </div>

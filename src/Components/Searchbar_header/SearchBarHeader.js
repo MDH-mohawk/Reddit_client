@@ -29,17 +29,17 @@ function SearchBarHeader(){
     
     //handles the searchterm when it is submitted
     function handleSubmit(e){
-        console.log("search value:" + e.currentTarget[0].value)
+        console.log("search value:" + term)
         e.preventDefault();
-        dispatch(AddSearchTerm(e.currentTarget[0].value))
+        dispatch(AddSearchTerm(term))
         dispatch(SearchFilter({category:category,
-            text:e.currentTarget[0].value
+            text:term
         }))
         navigate(`/${category}`)
         setSearchParams(prev => 
-            {prev.set("q",e.currentTarget[0].value) 
+            {prev.set("q",term) 
             return prev})
-        e.currentTarget[0].value = ""
+        setTerm("")
     }
 
     //Keeps track current searchTerm when type in searchbar
@@ -54,7 +54,7 @@ function SearchBarHeader(){
                 <img src="https://www.iconpacks.net/icons/2/free-reddit-logo-icon-2436-thumb.png" alt="thumbs up" height="100px"/>
                 <div className="search">
                     <form onSubmit={handleSubmit} data-testid="test-submit" role="form">
-                    <input type="text"  placeholder="search here"  name="search-input" data-testid="input_works" onChange={handleChange}></input>
+                    <input type="text"  placeholder="search here"  name="search-input" value={term}data-testid="input_works" onChange={handleChange}></input>
                     </form>
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 50 50">
                         <path d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 

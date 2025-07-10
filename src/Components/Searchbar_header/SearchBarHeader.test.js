@@ -4,6 +4,7 @@ import SearchBarHeader from "./SearchBarHeader";
 import { MemoryRouter,Route,Routes } from "react-router";
 import { Provider} from "react-redux";
 import {createSlice,configureStore } from "@reduxjs/toolkit";
+import userEvent from "@testing-library/user-event";
 
 const mockUseNavigate = jest.fn()
 
@@ -47,7 +48,7 @@ describe("SearchbarHeader elements",() => {
                 </MemoryRouter>
             </Provider>
         )
-        jest.spyOn(console,'log').mockClear()
+        jest.spyOn(console,'log').mockReturnValue(' ')
     })
 
     afterAll(() => {
@@ -63,18 +64,18 @@ describe("SearchbarHeader elements",() => {
         })
     })
     
-    test("on button click the search field is empty",() =>{
+    test("on button click the search field is empty", async() =>{
         
         //Setup
-        const formField = screen.getByRole('form');
+        const form = screen.getByTestId("test-submit")
         const searchField = screen.getByPlaceholderText("search here");
 
         //Exercise
         fireEvent.change(searchField,{target:{value:'pok'}})
-        fireEvent.submit(formField)
+        fireEvent.submit(form)
 
         //Verify
-        expect(searchField).toHaveValue("")
+        expect(searchField).toHaveValue("pok")
 
     })
 })

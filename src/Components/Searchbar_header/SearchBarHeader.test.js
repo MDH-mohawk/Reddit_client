@@ -64,7 +64,7 @@ describe("SearchbarHeader elements",() => {
         })
     })
     
-    test("on button click the search field is empty", async() =>{
+    test("on button click the search field is empty", () =>{
         
         //Setup
         const form = screen.getByTestId("test-submit")
@@ -75,7 +75,17 @@ describe("SearchbarHeader elements",() => {
         fireEvent.submit(form)
 
         //Verify
-        expect(searchField).toHaveValue("pok")
+        expect(searchField).toHaveValue("")
 
+    })
+
+    test("when typing the value of term changes", () => {
+        //Setup
+        const searchField = screen.getByPlaceholderText("search here");
+        
+        //Exercise
+        fireEvent.change(searchField,{target:{value:'pok'}})
+
+        expect(searchField).toHaveValue("pok")
     })
 })

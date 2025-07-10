@@ -3,7 +3,7 @@ import "./SearchBarHeader.css";
 import { useSearchParams,useParams,useNavigate} from "react-router";
 import { useDispatch,useSelector} from "react-redux";
 import { AddSearchTerm,searchState } from "./SearchBarSlice";
-import { Redditdata, SearchFilter } from "../Reddit_posts/RedditPostsSlice";
+import {SearchFilter } from "../Reddit_posts/RedditPostsSlice";
 import { changeCategory } from "../Categories/categorySlice";
 
 

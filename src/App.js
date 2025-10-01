@@ -10,7 +10,7 @@ import { categoryState } from './Components/Categories/categorySlice';
 
 
 //predetermined categories for filtering the Reddit API call request
-const categories = [
+export const categories = [
   "UXDesign","gamedev","GameDevelopment","PalWorld"
 ]
 

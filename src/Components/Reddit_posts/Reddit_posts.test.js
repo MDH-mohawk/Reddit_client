@@ -1,16 +1,21 @@
 import "@testing-library/jest-dom";
 import RedditPosts from "../Reddit_posts/Redditposts.js"
-import { render,screen } from "@testing-library/react";
+import { fireEvent, render,screen, waitFor } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { configureStore,createSlice} from "@reduxjs/toolkit";
 import { MemoryRouter } from "react-router";
+import {Redditdata} from '../Reddit_posts/RedditPostsSlice.js';
+import store from '../../Store.js';
+import { useDispatch } from "react-redux";
+import App from "../../App.js";
 
 jest.mock('../Reddit_post/Reddit_post.js', () => () => <div className="post" id='1' data-testid="post_test"/>)
 
 
 const postReducer = createSlice({
-    name:"dispost",
+    name:"RedditPosts",
     initialState:{
+        real_data:{},
         dispost:{
             key:1,
             id:1,
@@ -42,9 +47,10 @@ const this_store = configureStore({
     }
 });
 
-describe("Reddit posts component",() => {
-    test("Reddit post is there", () =>{
 
+describe("Reddit posts component",() => {
+
+    test("Reddit post is there", () =>{
         //Setup
         render(
         <Provider store={this_store}>
@@ -53,7 +59,7 @@ describe("Reddit posts component",() => {
             </MemoryRouter>
         </Provider>
         )
-        const post = screen.getAllByTestId("post_test");
+        const post = screen.getAllByTestId("post-test-p");
 
         //Exercise
 
@@ -62,3 +68,32 @@ describe("Reddit posts component",() => {
         expect(post).toBeDefined()
     })
 })
+
+describe("API data",() => {
+
+    beforeEach(() => {
+        jest.clearAllMocks();
+        jest.mock('../Reddit_posts/RedditPostsSlice.js',() => ({
+            Redditdata:jest.fn(),
+    }));
+    })
+
+    test("if fullfilled the right thing happens", () => {
+        //Setup
+        render(
+        <Provider store={store}>
+            <MemoryRouter initialEntries={["/UXDesign"]}>
+            <RedditPosts/>
+            </MemoryRouter>
+        </Provider>
+        )
+
+        const func = jest.fn()
+
+        //Exercise
+    
+
+        //Verify
+        expect(jest.isMockFunction(Redditdata)).toBe(true);
+    })
+} )

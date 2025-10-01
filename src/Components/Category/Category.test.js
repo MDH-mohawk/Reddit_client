@@ -31,7 +31,6 @@ const mockStore = configureStore({
         search:serachMockReducer.reducer
     }
 })
-
 beforeEach(()=>{
     render(
         <Provider store={mockStore}>
@@ -42,6 +41,7 @@ beforeEach(()=>{
         </Provider>
         );
 })
+
 
 describe("Category component",() => {
     test("New class is added to classlist of Category component button",() => {

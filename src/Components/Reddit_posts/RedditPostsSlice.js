@@ -8,11 +8,9 @@ export const Redditdata = createAsyncThunk("RedditPosts/getData",
     async(category) => {
         const data = await fetch(`https://www.reddit.com/r/${category}.json?raw_json=1`)
         const json = await data.json()
-        console.log(json.data.children)
         return json.data
     }
 )
-
 
 const RedditPostReducer = createSlice({
     name:"RedditPosts",
@@ -33,7 +31,7 @@ const RedditPostReducer = createSlice({
             //Filtering posts based on search term
             let {category,text} = action.payload;
 
-            state.search_data = state.real_data.filter(item => item.title.toLocaleLowerCase().includes(text));
+            state.search_data = Object.values(state.real_data).filter(item => item.title.toLocaleLowerCase().includes(text));
 
             return state;
         },

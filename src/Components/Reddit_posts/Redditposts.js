@@ -1,11 +1,13 @@
 import RedditPost from "../Reddit_post/Reddit_post.js";
 import {useSelector} from 'react-redux';
-import { RedditDispost,data_error,data_pending} from "./RedditPostsSlice.js";
+import { RedditDispost,data_error,data_pending,RedditRealData} from "./RedditPostsSlice.js";
 
 
 
 
 function RedditPosts(){
+  const real_data = useSelector(RedditRealData);
+  console.log(typeof real_data);
   const pending = useSelector(data_pending);
   const error = useSelector(data_error);
   const dispost = useSelector(RedditDispost)

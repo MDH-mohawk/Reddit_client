@@ -1,5 +1,9 @@
 import React,{useState} from "react";
 import Category from "../Category/Category";
+import gamedesign from "../../img/gamedesign_subreddit_image.webp";
+import gamedev from "../../img/gamedev_subreddit_image.webp";
+import uxdesign from "../../img/UXDesign_subreddit_image.webp";
+import palworld from "../../img/palworld_subreddit_image.webp"
 import "./Categories.css";
 import { IoIosArrowBack,IoIosArrowForward } from "react-icons/io";
 
@@ -13,10 +17,18 @@ function Categories({arr}){
     function onClick() {
         setPos((prevPos) => (prevPos === -210? 0 : -210))
     }
+
+    //img src array
+
+    const img_arr = [gamedesign,gamedev,uxdesign,palworld];
+
+    //Variable for the righ category image
+
+    let n = 0;
     
     //the categories loading based on the 'arr' array prop
     const categories = (arr || [] ).map((item) =>{
-        return <Category key={item} cat={item}/>
+        return <Category key={item} cat={item} cat_img={img_arr[n++]}/>
     })
 
     //condition to change appearance of the arrow button on mobile categories menu

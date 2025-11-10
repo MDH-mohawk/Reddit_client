@@ -10,7 +10,7 @@ import { AddSearchTerm } from "../Searchbar_header/SearchBarSlice";
 import { Redditdata} from "../Reddit_posts/RedditPostsSlice";
 
 
-function Category({cat}){
+function Category({cat,cat_img}){
 
         const dispatch = useDispatch();
 
@@ -29,6 +29,7 @@ function Category({cat}){
         //Handling selecting the category
         function handlecategory(e){
             dispatch(Redditdata(cat))
+            console.log('The function from Category is doing something!');
             //changes the category state
             dispatch(changeCategory({category:cat}))
             //clearing search when category get clicked on
@@ -45,7 +46,7 @@ function Category({cat}){
     return (
         <Link to={`${cat}`} key={cat} onClick={handlecategory} data-testid="cat_test">
         <aside className={style} id={cat} data-testid="category">
-            <img className="Category_img" src={helldivers2} alt="Representative category"/>
+            <img className="Category_img" src={cat_img} alt="Representative category"/>
             <p id="category_text">{cat}</p>
         </aside>
         </Link>

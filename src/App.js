@@ -20,35 +20,30 @@ function App() {
   const pending = useSelector(data_pending);
   const term = useSelector(searchState);
   const dispatch = useDispatch();
-  const cat = useSelector(categoryState)
+  const cat = useSelector(categoryState);  
 
   const [results,setResults] = useState(true);
 
 
   //show the right posts based on category
   useEffect(()=> {
-    console.log(cat)
-    console.log(posts)
     dispatch(Redditdata(cat))
+    console.log('The useEffect from App is doing something!');
   },[cat])
 
   //filter based on search results based on given category
    useEffect( ()=> {
     if (term === "" && !pending){
-      console.log(posts)
       dispatch(changeDispost(posts))
-      console.log("the search term is empty")
       setResults(true)
     }
     else if(term.length > 0){
       if(searchposts.length <= 0){
         console.log("no search results!")
         setResults(false);
-        console.log(results);
       }
       else {
         setResults(true);
-        console.log(results);
         dispatch(changeDispost(searchposts))
       }
     }

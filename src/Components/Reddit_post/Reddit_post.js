@@ -20,7 +20,7 @@ function RedditPost({img_src,description_text,post_id,author,ups,downs}){
 
 
     return (
-                <div className="post" id={post_id} data-testid="post_test">
+                <div className='post'id={post_id} data-testid="post_test">
                     {!img_src.match(/\.(jpe?g|png)$/i)?null:<img src={img_src}/>}
                     <div className="lower_post">
                         <p id="post_description" >{description_text}</p>

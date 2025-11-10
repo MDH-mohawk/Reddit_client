@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/Reddit_client/static/css/main.3fd336b6.css",
+    "main.js": "/Reddit_client/static/js/main.006e9d9d.js",
+    "static/js/453.92861fa7.chunk.js": "/Reddit_client/static/js/453.92861fa7.chunk.js",
+    "static/media/hell_divers_2.jpg": "/Reddit_client/static/media/hell_divers_2.56cab5418fec6ee5e20a.jpg",
+    "static/media/palworld_subreddit_image.webp": "/Reddit_client/static/media/palworld_subreddit_image.a74faea12fcafe88325f.webp",
+    "static/media/gamedesign_subreddit_image.webp": "/Reddit_client/static/media/gamedesign_subreddit_image.319503bd9c7a12bf109a.webp",
+    "static/media/UXDesign_subreddit_image.webp": "/Reddit_client/static/media/UXDesign_subreddit_image.67f26da3f0fa6bf8e300.webp",
+    "static/media/gamedev_subreddit_image.webp": "/Reddit_client/static/media/gamedev_subreddit_image.2906396040b3cec7d3aa.webp",
+    "index.html": "/Reddit_client/index.html",
+    "main.3fd336b6.css.map": "/Reddit_client/static/css/main.3fd336b6.css.map",
+    "main.006e9d9d.js.map": "/Reddit_client/static/js/main.006e9d9d.js.map",
+    "453.92861fa7.chunk.js.map": "/Reddit_client/static/js/453.92861fa7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3fd336b6.css",
+    "static/js/main.006e9d9d.js"
+  ]
+}

@@ -1,4 +1,5 @@
 {
+  "homepage": "http://MDH-mohawk.github.io/Reddit_client",
   "name": "reddit_post_viewer_app",
   "version": "0.1.0",
   "private": true,
@@ -8,6 +9,7 @@
     "@testing-library/react": "^15.0.6",
     "@testing-library/user-event": "^13.5.0",
     "jest-fixed-jsdom": "^0.0.9",
+    "mocha": "11.7.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.4.0",
@@ -17,11 +19,12 @@
     "react-scripts": "5.0.1",
     "selenium-webdriver": "^4.36.0",
     "text-encoding": "^0.7.0",
-    "web-vitals": "^2.1.4",
-    "mocha": "11.7.1"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy":"gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -49,6 +52,7 @@
     "ajv": "^8.17.1",
     "cypress": "^14.5.4",
     "enzyme": "^3.11.0",
+    "gh-pages": "^6.3.0",
     "msw": "^2.10.4",
     "vitest": "^3.2.4"
   }

@@ -11,7 +11,7 @@ import RedditPostModal from './Components/RedditPostModal/RedditPostModal';
 
 
 const appRouter = createBrowserRouter(createRoutesFromElements(
-  <Route path='/RReddit_client/' element={<App/>}>
+  <Route path='/Reddit_client/' element={<App/>}>
     <Route path='/Reddit_client/' element={<Navigate to="/Reddit_client/UXDesign" replace/>}/>
       <Route path='/Reddit_client/:category' element={<RedditPosts/>}/>
       <Route path='/Reddit_client/:category/:post' element={<RedditPostModal/>}/>

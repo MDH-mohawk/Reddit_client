@@ -35,7 +35,7 @@ function SearchBarHeader(){
         dispatch(SearchFilter({category:category,
             text:term
         }))
-        navigate(`/Reddit/${category}`)
+        navigate(`/Reddit_client/${category}`)
         setSearchParams(prev => 
             {prev.set("q",term) 
             return prev})

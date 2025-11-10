@@ -15,7 +15,7 @@ function RedditPost({img_src,description_text,post_id,author,ups,downs}){
 
     //Navigate to specific post
     function handlePost(){
-        navigate(`/${currentcat}/${post_id}`)
+        navigate(`/Reddit_client/${currentcat}/${post_id}`)
     }
 
 
